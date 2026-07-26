@@ -1,0 +1,502 @@
+:root {
+    --bl-yellow: #ffb400;
+    --bl-orange: #ff6600;
+    --bl-purple: #9b5de5;
+    --bl-blue: #00bbf9;
+    --bl-bg-dark: #0f1216;
+    --bl-panel-bg: #151b22;
+    --bl-card-bg: #1f272f;
+    --bl-border: #000000;
+    --bl-text: #e1e9f0;
+    --bl-green-glow: #00ff66;
+    --bl-red-glow: #ff3333;
+}
+
+/* ================= CONFIGURAÇÃO GLOBAL E CORPO ================= */
+body {
+    background-color: var(--bl-bg-dark);
+    color: var(--bl-text);
+    font-family: 'Rajdhani', sans-serif;
+    margin: 0;
+    /* 240px de recuo superior para o conteúdo não sumir por baixo do HUD fixo */
+    padding: 240px 20px 20px 20px; 
+    background-image: radial-gradient(circle, #202b36 12%, transparent 13%);
+    background-size: 10px 10px;
+}
+
+/* Container Cel Shading Principal (ECHO Device frame) */
+.borderlands-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--bl-panel-bg);
+    border: 5px solid var(--bl-border);
+    box-shadow: 12px 12px 0px var(--bl-border);
+    padding: 25px;
+    position: relative;
+}
+
+/* ================= HUD HEADER FIXO NO TOPO ================= */
+.hud-fixed-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: var(--bl-bg-dark);
+    padding: 15px 0 10px 0;
+    border-bottom: 4px solid var(--bl-border);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.6);
+}
+
+.hud-fixed-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.hud-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #242f38;
+    border: 4px solid var(--bl-border);
+    padding: 15px 25px;
+    transform: skewX(-2deg);
+    box-shadow: 4px 4px 0px var(--bl-border);
+    position: relative;
+}
+
+.char-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.8rem;
+    letter-spacing: 2px;
+    color: var(--bl-yellow);
+    margin: 0;
+    text-shadow: 3px 3px 0px #000;
+}
+
+.char-class {
+    margin: 5px 0 0 0;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #a3b2c0;
+}
+
+/* HUD de Status (Shield e HP) */
+.hud-sub-bar {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.hud-bar {
+    flex: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 5px 15px;
+    font-size: 1.1rem;
+    border: 3px solid var(--bl-border);
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 0 #000;
+}
+
+.shield {
+    background: #0088cc;
+    color: #fff;
+    border-left: 8px solid #00ddff;
+}
+
+.hp {
+    background: #cc2222;
+    color: #fff;
+    border-left: 8px solid #ff4444;
+}
+
+/* ================= BARRA DE PROGRESSO DE ROLAGEM (XP BAR) ================= */
+.xp-progress-wrapper {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1a2228;
+    border: 3px solid var(--bl-border);
+    padding: 4px 10px;
+    box-shadow: 3px 3px 0px var(--bl-border);
+}
+
+.xp-label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: var(--bl-yellow);
+    letter-spacing: 1px;
+}
+
+.xp-bar-container {
+    flex: 1;
+    height: 14px;
+    background: #0d1317;
+    border: 2px solid var(--bl-border);
+    position: relative;
+    overflow: hidden;
+}
+
+.xp-bar-fill {
+    height: 100%;
+    width: 0%; /* Atualizado em tempo real pelo script.js */
+    background: linear-gradient(90deg, #00ff66, #88ff00);
+    box-shadow: 0 0 8px rgba(0, 255, 102, 0.7);
+    transition: width 0.1s ease-out;
+}
+
+.xp-counter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    color: #fff;
+    min-width: 45px;
+    text-align: right;
+}
+
+.bl-divider {
+    border: none;
+    height: 6px;
+    background: var(--bl-border);
+    margin: 15px 0 30px 0;
+}
+
+/* ================= ENGINE DE EFEITO GLITCH NO BADGE DE LEVEL ================= */
+.lvl-badge {
+    background: var(--bl-yellow);
+    color: #000;
+    padding: 5px 20px;
+    border: 3px solid var(--bl-border);
+    font-family: 'Bebas Neue', sans-serif;
+    text-align: center;
+    transform: skewX(6deg);
+    box-shadow: -3px 3px 0px var(--bl-border);
+    position: relative;
+    cursor: pointer;
+}
+
+.lvl-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    line-height: 0.9;
+}
+
+.lvl-xp {
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* Ativação das animações combinadas de tremor e divisão cromática */
+.lvl-badge:hover {
+    animation: bl-glitch-skew 0.3s infinite;
+}
+
+.lvl-badge:hover::before,
+.lvl-badge:hover::after {
+    content: 'LVL 10 ANOS EXP';
+    font-size: 0.8rem;
+    font-weight: bold;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bl-yellow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    line-height: 0.9;
+    padding-top: 5px;
+}
+
+/* Camada Holográfica Ciano */
+.lvl-badge:hover::before {
+    left: -2px;
+    text-shadow: 2px 0 var(--bl-blue);
+    clip-path: inset(40% 0 61% 0);
+    animation: bl-glitch-anim-1 1s infinite linear alternate-reverse;
+}
+
+/* Camada Holográfica Vermelha */
+.lvl-badge:hover::after {
+    left: 2px;
+    text-shadow: -2px 0 var(--bl-red-glow);
+    clip-path: inset(70% 0 10% 0);
+    animation: bl-glitch-anim-2 1.5s infinite linear alternate-reverse;
+}
+
+/* ================= ESTRUTURA GRID DO MENU ECHO ================= */
+.echo-menu {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+}
+
+@media(min-width: 900px) {
+    .echo-menu {
+        grid-template-columns: 1fr 1.2fr;
+    }
+}
+
+h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--bl-yellow);
+    margin-top: 0;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 0 #000;
+}
+
+.skills-grid, .mission-log, .inventory-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.skill-card, .mission-card, .inv-item {
+    background: var(--bl-card-bg);
+    border: 3px solid var(--bl-border);
+    padding: 15px;
+    box-shadow: 4px 4px 0px var(--bl-border);
+}
+
+.skill-card {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.skill-card.active-tree { border-left: 8px solid var(--bl-green-glow); }
+.skill-card.utility-tree { border-left: 8px solid var(--bl-blue); }
+
+.skill-icon {
+    font-size: 2rem;
+    background: var(--bl-border);
+    padding: 10px;
+    min-width: 40px;
+    text-align: center;
+    border-radius: 4px;
+}
+
+.skill-details h3, .mission-card h3, .inv-item h3 {
+    margin: 0 0 5px 0;
+    font-size: 1.3rem;
+    color: #fff;
+}
+
+.skill-details p, .inv-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #a4b3c1;
+}
+
+/* Itens do Inventário (Raridades) */
+.item-type {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.orange-rarity { border-left: 8px solid var(--bl-orange); }
+.orange-rarity .item-type { color: var(--bl-orange); }
+
+.purple-rarity { border-left: 8px solid var(--bl-purple); }
+.purple-rarity .item-type { color: var(--bl-purple); }
+
+.blue-rarity { border-left: 8px solid var(--bl-blue); }
+.blue-rarity .item-type { color: var(--bl-blue); }
+
+/* ================= CORREÇÃO EXCLUSIVA DO LOG DE MISSÕES (TEXTO CORTADO) ================= */
+.mission-card {
+    position: relative;
+    padding-top: 40px; /* Recuo interno aumentado para abrir espaço ao selo interno */
+}
+
+.mission-badge {
+    font-family: 'Bebas Neue', sans-serif;
+    position: absolute;
+    top: 8px; /* Movido de -14px para 8px, garantindo que fique dentro dos limites da div */
+    left: 15px;
+    background: var(--bl-border);
+    padding: 3px 12px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    z-index: 2; /* Fica acima da camada de animação holográfica */
+}
+
+.current-mission { border-left: 8px solid var(--bl-yellow); }
+.current-mission .mission-badge { color: var(--bl-yellow); }
+
+.completed-mission { border-left: 8px solid var(--bl-green-glow); }
+.completed-mission .mission-badge { color: var(--bl-green-glow); }
+
+.mission-date {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #8899a6;
+    font-weight: bold;
+}
+
+/* ================= INTERAÇÕES E ANIMAÇÕES (HOVER CARDS) ================= */
+.bl-interactive {
+    cursor: pointer;
+    transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.25s ease, 
+                border-color 0.2s ease;
+    position: relative;
+    overflow: hidden; /* Mantém o feixe de luz enquadrado dentro do componente */
+}
+
+.bl-interactive:hover {
+    transform: translateY(-5px) scale(1.02) skewX(-2deg);
+    border-color: var(--bl-yellow) !important;
+    box-shadow: 8px 8px 0px #000, 0px 0px 15px rgba(255, 180, 0, 0.4);
+}
+
+/* Feixe de Varredura Holográfica */
+.bl-interactive::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.06);
+    transform: rotate(30deg);
+    transition: none;
+}
+
+.bl-interactive:hover::after {
+    left: 140%;
+    transition: all 0.6s ease-in-out;
+}
+
+.click-prompt {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.85rem;
+    margin: 10px 0 0 0 !important;
+    color: var(--bl-yellow);
+    letter-spacing: 1px;
+    opacity: 0.5;
+}
+
+.bl-interactive:hover .click-prompt {
+    opacity: 1;
+    animation: bl-pulse 0.8s infinite alternate;
+}
+
+/* ================= POPUPS / MODAIS CIBERNÉTICOS ================= */
+.bl-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 14, 18, 0.88);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.bl-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.bl-modal {
+    background: #19222a;
+    border: 5px solid #000;
+    box-shadow: 15px 15px 0px #000;
+    width: 90%;
+    max-width: 580px;
+    padding: 30px;
+    position: relative;
+    transform: scale(0.6) skewY(4deg);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.bl-modal-overlay.active .bl-modal {
+    transform: scale(1) skewY(0deg);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 2.5rem;
+    font-family: 'Bebas Neue', sans-serif;
+    color: #566675;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.close-btn:hover {
+    color: var(--bl-red-glow);
+}
+
+.modal-rarity {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 1.5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.stat-row {
+    background: #212c36;
+    border: 2px solid #000;
+    padding: 12px;
+    margin-top: 15px;
+    font-size: 0.95rem;
+    border-left: 6px solid var(--bl-yellow);
+}
+
+.mission-objectives-full {
+    padding-left: 20px;
+    line-height: 1.6;
+}
+
+.mission-objectives-full li {
+    margin-bottom: 12px;
+    color: #d1dce5;
+}
+
+/* ================= KEYFRAMES ANIMAÇÕES ================= */
+@keyframes bl-glitch-anim-1 {
+    0% { clip-path: inset(10% 0 85% 0); }
+    20% { clip-path: inset(60% 0 35% 0); }
+    40% { clip-path: inset(30% 0 55% 0); }
+    60% { clip-path: inset(80% 0 5% 0); }
+    80% { clip-path: inset(45% 0 45% 0); }
+    100% { clip-path: inset(15% 0 75% 0); }
+}
+
+@keyframes bl-glitch-anim-2 {
+    0% { clip-path: inset(75% 0 15% 0); }
+    25% { clip-path: inset(15% 0 80% 0); }
+    50% { clip-path: inset(55% 0 40% 0); }
+    75% { clip-path: inset(30% 0 65% 0); }
+    100% { clip-path: inset(85% 0 5% 0); }
+}
+
+@keyframes bl-glitch-skew {
+    0% { transform: skewX(6deg) translate(0, 0); }
+    20% { transform: skewX(2deg) translate(-1px, 1px); }
+    40% { transform: skewX(10deg) translate(1px, -1px); }
+    60% { transform: skewX(4deg) translate(-1px, -1px); }
+    80% { transform: skewX(8deg) translate(1px, 1px); }
+    100% { transform: skewX(6deg) translate(0, 0); }
+}
+
+@keyframes bl-pulse {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
