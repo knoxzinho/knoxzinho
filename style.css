@@ -1,23 +1,45 @@
+/* ==========================================================
+   KIROSHI-RESOLVER OS (CYBERPUNK 2077 x FAR CRY 6) STYLESHEET
+   ========================================================== */
+
 :root {
-    /* Paleta Far Cry: Guerrilha, Selva Tática, Âmbar e Vermelho Rebelde */
-    --fc-bg-deep: #0b0e0c;
-    --fc-bg-jungle: #121714;
-    --fc-panel: #181f1b;
-    --fc-card: #1f2823;
-    --fc-card-hover: #26322b;
+    /* TEMA PADRÃO: CYBERPUNK 2077 (Night City Neon / Kiroshi) */
+    --sys-bg: #050508;
+    --sys-panel: #0d0f18;
+    --sys-card: #121624;
+    --sys-card-hover: #1a2035;
     
-    --fc-amber: #f5a623;       /* Cor clássica de Waypoint/Objetivo Far Cry */
-    --fc-amber-glow: rgba(245, 166, 35, 0.35);
-    --fc-red: #e63946;         /* Cor de Posto Avançado / Alerta Guerrilha */
-    --fc-green: #52b788;       /* Território Conquistado / Camuflagem */
-    --fc-khaki: #c2bba8;       /* Papel / Dossiê militar */
-    --fc-text: #eceae4;
-    --fc-text-muted: #95a199;
-    --fc-border: #324038;
+    --sys-primary: #fcee0a;       /* Cyber Yellow */
+    --sys-primary-glow: rgba(252, 238, 10, 0.4);
+    --sys-secondary: #00f0ff;     /* Kiroshi Cyan */
+    --sys-accent: #ff003c;        /* Samurai Red */
+    --sys-green: #00ff66;
+    
+    --sys-text: #f0f3f8;
+    --sys-text-muted: #8c9cb0;
+    --sys-border: #242c42;
     
     --font-heading: 'Bebas Neue', sans-serif;
     --font-body: 'Rajdhani', sans-serif;
     --font-mono: 'Share Tech Mono', monospace;
+}
+
+[data-theme="farcry"] {
+    /* TEMA SECUNDÁRIO: FAR CRY 6 (Resolver / Yara Guerrilla) */
+    --sys-bg: #0b0e0c;
+    --sys-panel: #141b16;
+    --sys-card: #1c2620;
+    --sys-card-hover: #26352c;
+    
+    --sys-primary: #f5a623;       /* Libertad Amber */
+    --sys-primary-glow: rgba(245, 166, 35, 0.35);
+    --sys-secondary: #52b788;     /* Jungle Green */
+    --sys-accent: #e63946;        /* Viviro Red */
+    --sys-green: #52b788;
+    
+    --sys-text: #eceae4;
+    --sys-text-muted: #95a199;
+    --sys-border: #324038;
 }
 
 * {
@@ -25,27 +47,26 @@
 }
 
 body {
-    background-color: var(--fc-bg-deep);
-    color: var(--fc-text);
+    background-color: var(--sys-bg);
+    color: var(--sys-text);
     font-family: var(--font-body);
     margin: 0;
     padding: 0;
-    /* Fundo de grade topográfica / mapa tático */
     background-image: 
-        radial-gradient(circle at 50% 0%, rgba(245, 166, 35, 0.08), transparent 60%),
-        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+        radial-gradient(circle at 50% 0%, var(--sys-primary-glow), transparent 60%),
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
     background-size: 100% 100%, 32px 32px, 32px 32px;
     overflow-x: hidden;
+    transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Vinheta nas bordas da tela estilo FPS HUD */
 .tactical-overlay {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 900;
-    box-shadow: inset 0 0 90px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.85);
 }
 
 /* ================= TOAST NOTIFICATION ================= */
@@ -53,7 +74,7 @@ body {
     position: fixed;
     bottom: 25px;
     right: 25px;
-    background: var(--fc-amber);
+    background: var(--sys-primary);
     color: #000;
     font-family: var(--font-heading);
     font-size: 1.2rem;
@@ -72,16 +93,17 @@ body {
     opacity: 1;
 }
 
-/* ================= HUD TÁTICO SUPERIOR (STICKY) ================= */
+/* ================= HUD SUPERIOR STICKY ================= */
 .fc-hud-wrapper {
     position: sticky;
     top: 0;
     z-index: 800;
-    background: rgba(11, 14, 12, 0.94);
-    backdrop-filter: blur(8px);
-    border-bottom: 2px solid var(--fc-amber);
+    background: rgba(5, 5, 8, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 2px solid var(--sys-primary);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
-    padding: 10px 0 12px 0;
+    padding: 8px 0 12px 0;
+    transition: border-color 0.4s ease;
 }
 
 .fc-hud-container {
@@ -90,18 +112,69 @@ body {
     padding: 0 20px;
 }
 
-/* Bússola estilo Far Cry no topo */
+/* Painel de Controle de Tema e Áudio */
+.control-deck-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #090c14;
+    border: 1px solid var(--sys-border);
+    padding: 6px 15px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+}
+
+.deck-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.deck-label {
+    color: var(--sys-secondary);
+}
+
+.deck-btn {
+    background: var(--sys-card);
+    border: 1px solid var(--sys-border);
+    color: var(--sys-text);
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.deck-btn:hover {
+    border-color: var(--sys-primary);
+    color: var(--sys-primary);
+}
+
+.system-clock {
+    color: var(--sys-text-muted);
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--sys-green);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 8px var(--sys-green);
+    animation: pulse 1.5s infinite;
+}
+
+/* Bússola Kiroshi / Far Cry */
 .compass-bar {
     position: relative;
-    height: 24px;
+    height: 22px;
     background: rgba(0, 0, 0, 0.6);
-    border: 1px solid var(--fc-border);
-    margin-bottom: 10px;
+    border: 1px solid var(--sys-border);
+    margin-bottom: 8px;
     overflow: hidden;
     display: flex;
     align-items: center;
-    mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
-    -webkit-mask-image: linear-gradient(to right, transparent, black 20%, black 80%, transparent);
 }
 
 .compass-center-marker {
@@ -109,7 +182,7 @@ body {
     top: -2px;
     left: 50%;
     transform: translateX(-50%);
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     font-size: 0.75rem;
     z-index: 2;
 }
@@ -119,56 +192,47 @@ body {
     gap: 28px;
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--fc-text-muted);
+    color: var(--sys-text-muted);
     white-space: nowrap;
     will-change: transform;
     padding-left: 30%;
 }
 
 .compass-track .cardinal {
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     font-weight: bold;
-    font-size: 0.95rem;
 }
 
-/* Barra Principal de Identificação */
+/* HUD Principal de Identificação */
 .hud-main-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 15px;
-    background: var(--fc-panel);
-    border-left: 5px solid var(--fc-amber);
-    border-right: 2px solid var(--fc-border);
+    background: var(--sys-panel);
+    border-left: 5px solid var(--sys-primary);
+    border-right: 2px solid var(--sys-border);
     padding: 12px 20px;
     clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+    transition: border-left-color 0.4s ease;
 }
 
 .faction-tag {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     letter-spacing: 1.5px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
 }
 
-.pulse-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--fc-green);
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: 0 0 8px var(--fc-green);
-    animation: pulse 1.5s infinite;
+.cyber-bracket {
+    color: var(--sys-secondary);
 }
 
 .char-name {
     font-family: var(--font-heading);
     font-size: clamp(1.8rem, 3.5vw, 2.7rem);
     letter-spacing: 2px;
-    color: var(--fc-text);
+    color: var(--sys-text);
     margin: 2px 0 0 0;
     line-height: 1;
 }
@@ -177,17 +241,17 @@ body {
     margin: 4px 0 0 0;
     font-weight: 700;
     font-size: 1rem;
-    color: var(--fc-khaki);
+    color: var(--sys-secondary);
     letter-spacing: 0.5px;
 }
 
-/* Insígnia Militar de Veterano */
+/* Insígnia Netrunner */
 .rank-badge {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: linear-gradient(135deg, var(--fc-amber), #d4820a);
-    color: #0b0e0c;
+    background: linear-gradient(135deg, var(--sys-primary), #c9b400);
+    color: #050508;
     padding: 8px 18px;
     clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
     font-family: var(--font-heading);
@@ -221,7 +285,7 @@ body {
     font-size: 0.75rem;
 }
 
-/* Botões de Rádio / Contato */
+/* Comms Bar */
 .hud-comms-bar {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -230,10 +294,10 @@ body {
 }
 
 .comm-btn {
-    background: var(--fc-card);
-    border: 1px solid var(--fc-border);
-    border-left: 4px solid var(--fc-khaki);
-    color: var(--fc-text);
+    background: var(--sys-card);
+    border: 1px solid var(--sys-border);
+    border-left: 4px solid var(--sys-secondary);
+    color: var(--sys-text);
     padding: 7px 14px;
     font-family: var(--font-body);
     display: flex;
@@ -244,77 +308,76 @@ body {
     transition: all 0.2s ease;
 }
 
-.comm-phone { border-left-color: var(--fc-green); }
-.comm-email { border-left-color: var(--fc-amber); }
-.comm-linkedin { border-left-color: var(--fc-red); }
+.comm-phone { border-left-color: var(--sys-green); }
+.comm-email { border-left-color: var(--sys-primary); }
+.comm-linkedin { border-left-color: var(--sys-accent); }
 
 .comm-btn:hover {
-    background: var(--fc-card-hover);
-    border-color: var(--fc-amber);
+    background: var(--sys-card-hover);
+    border-color: var(--sys-primary);
     transform: translateY(-2px);
 }
 
 .comm-tag {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--fc-text-muted);
+    color: var(--sys-text-muted);
 }
 
 .comm-val {
     font-weight: 700;
     font-size: 0.95rem;
-    letter-spacing: 0.5px;
 }
 
 .comm-action {
     font-family: var(--font-heading);
     font-size: 0.85rem;
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     letter-spacing: 1px;
 }
 
-/* Barra de Domínio do Território (XP/Scroll) */
+/* Barra de Território */
 .territory-progress {
     margin-top: 10px;
     display: flex;
     align-items: center;
     gap: 12px;
-    background: #101512;
-    border: 1px solid var(--fc-border);
+    background: #080a10;
+    border: 1px solid var(--sys-border);
     padding: 4px 12px;
 }
 
 .tp-label {
     font-family: var(--font-heading);
     font-size: 0.95rem;
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     letter-spacing: 1px;
 }
 
 .tp-bar-bg {
     flex: 1;
     height: 8px;
-    background: #070908;
+    background: #020305;
     overflow: hidden;
 }
 
 .tp-bar-fill {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--fc-red), var(--fc-amber));
-    box-shadow: 0 0 10px var(--fc-amber-glow);
+    background: linear-gradient(90deg, var(--sys-accent), var(--sys-primary));
+    box-shadow: 0 0 10px var(--sys-primary-glow);
     transition: width 0.1s ease-out;
 }
 
 .tp-counter {
     font-family: var(--font-mono);
     font-size: 0.9rem;
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     min-width: 40px;
     text-align: right;
 }
 
-/* ================= CONTAINER PRINCIPAL E GRID ================= */
+/* ================= LAYOUT PRINCIPAL ================= */
 .fc-container {
     max-width: 1200px;
     margin: 25px auto 40px auto;
@@ -341,26 +404,175 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    border-bottom: 2px solid var(--fc-border);
+    border-bottom: 2px solid var(--sys-border);
     padding-bottom: 8px;
     margin-bottom: 18px;
 }
 
 .waypoint-diamond {
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     font-size: 1.2rem;
-    text-shadow: 0 0 8px var(--fc-amber-glow);
+    text-shadow: 0 0 8px var(--sys-primary-glow);
 }
 
 h2 {
     font-family: var(--font-heading);
     font-size: 1.85rem;
-    color: var(--fc-text);
+    color: var(--sys-text);
     margin: 0;
     letter-spacing: 1.5px;
 }
 
-/* ================= CARDS INTERATIVOS (PERKS & POSTOS AVANÇADOS) ================= */
+/* ================= RADAR BIOMÉTRICO KIROSHI ================= */
+.bio-radar-section {
+    background: var(--sys-panel);
+    border: 1px solid var(--sys-border);
+    padding: 20px;
+    clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 0 100%);
+}
+
+.radar-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.radar-svg {
+    width: 140px;
+    height: 140px;
+}
+
+.radar-web {
+    fill: none;
+    stroke: var(--sys-border);
+    stroke-width: 1;
+}
+
+.radar-line {
+    stroke: var(--sys-border);
+    stroke-width: 1;
+}
+
+.radar-polygon {
+    fill: var(--sys-primary-glow);
+    stroke: var(--sys-primary);
+    stroke-width: 2;
+    animation: radarPulse 3s infinite alternate;
+}
+
+@keyframes radarPulse {
+    0% { opacity: 0.6; }
+    100% { opacity: 1; }
+}
+
+.radar-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+}
+
+.radar-stat span {
+    color: var(--sys-text-muted);
+}
+
+.radar-stat strong {
+    color: var(--sys-secondary);
+}
+
+/* ================= MINIGAME: BREACH PROTOCOL ================= */
+.breach-section {
+    background: var(--sys-panel);
+    border: 1px solid var(--sys-border);
+    padding: 20px;
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+}
+
+.breach-desc {
+    margin: 0 0 12px 0;
+    font-size: 0.95rem;
+    color: var(--sys-text-muted);
+}
+
+.matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.matrix-grid span {
+    background: var(--sys-card);
+    border: 1px solid var(--sys-border);
+    color: var(--sys-primary);
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.matrix-grid span:hover,
+.matrix-grid span.selected {
+    background: var(--sys-primary);
+    color: #000;
+    border-color: var(--sys-primary);
+}
+
+.ram-buffer-area {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    flex-wrap: wrap;
+}
+
+.ram-slots {
+    display: flex;
+    gap: 6px;
+}
+
+.ram-slot {
+    background: #030406;
+    border: 1px solid var(--sys-border);
+    color: var(--sys-secondary);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.breach-exec-btn {
+    background: var(--sys-secondary);
+    color: #000;
+    border: none;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    padding: 6px 16px;
+    cursor: pointer;
+    clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+    transition: opacity 0.2s;
+}
+
+.breach-exec-btn:hover {
+    opacity: 0.85;
+}
+
+#breachResult {
+    margin: 10px 0 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--sys-secondary);
+}
+
+/* ================= CARDS INTERATIVOS ================= */
 .skills-grid,
 .loadout-list,
 .outpost-timeline {
@@ -373,9 +585,9 @@ h2 {
     width: 100%;
     text-align: left;
     font-family: var(--font-body);
-    color: var(--fc-text);
-    background: var(--fc-card);
-    border: 1px solid var(--fc-border);
+    color: var(--sys-text);
+    background: var(--sys-card);
+    border: 1px solid var(--sys-border);
     padding: 16px 18px;
     position: relative;
     cursor: pointer;
@@ -385,38 +597,36 @@ h2 {
 
 .fc-card:hover,
 .fc-card:focus-visible {
-    background: var(--fc-card-hover);
-    border-color: var(--fc-amber);
+    background: var(--sys-card-hover);
+    border-color: var(--sys-primary);
     transform: translateX(6px);
-    box-shadow: -4px 0 0 var(--fc-amber), 0 8px 20px rgba(0, 0, 0, 0.5);
+    box-shadow: -4px 0 0 var(--sys-primary), 0 8px 20px rgba(0, 0, 0, 0.5);
     outline: none;
 }
 
-/* Cards de Habilidade (Perks) */
 .skill-card {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.perk-assault { border-left: 5px solid var(--fc-red); }
-.perk-intel { border-left: 5px solid var(--fc-amber); }
-.perk-special { border-left: 5px solid #ff9f1c; }
-.perk-defense { border-left: 5px solid var(--fc-green); }
+.perk-assault { border-left: 5px solid var(--sys-accent); }
+.perk-intel { border-left: 5px solid var(--sys-primary); }
+.perk-special { border-left: 5px solid var(--sys-secondary); }
+.perk-defense { border-left: 5px solid var(--sys-green); }
 
-/* Emblema em formato de Diamante (Losango Far Cry) */
 .skill-emblem {
     width: 48px;
     height: 48px;
-    background: #101512;
-    border: 2px solid var(--fc-amber);
+    background: #080a10;
+    border: 2px solid var(--sys-primary);
     display: flex;
     align-items: center;
     justify-content: center;
     transform: rotate(45deg);
     flex-shrink: 0;
     margin-left: 6px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .skill-emblem span {
@@ -426,7 +636,6 @@ h2 {
 
 .fc-card:hover .skill-emblem {
     transform: rotate(225deg);
-    background: rgba(245, 166, 35, 0.15);
 }
 
 .card-content {
@@ -436,7 +645,7 @@ h2 {
 .perk-category {
     font-family: var(--font-mono);
     font-size: 0.75rem;
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     letter-spacing: 1px;
 }
 
@@ -453,26 +662,24 @@ h2 {
 .loadout-item p {
     margin: 0;
     font-size: 0.95rem;
-    color: var(--fc-text-muted);
+    color: var(--sys-text-muted);
 }
 
 .inspect-icon {
     font-family: var(--font-mono);
     font-size: 1.5rem;
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     opacity: 0.5;
-    transition: opacity 0.2s, transform 0.2s;
 }
 
 .fc-card:hover .inspect-icon {
     opacity: 1;
-    transform: scale(1.2);
 }
 
-/* ================= ARSENAL / FORMAÇÃO ================= */
+/* Loadouts & Outposts */
 .loadout-item {
-    background: var(--fc-panel);
-    border: 1px solid var(--fc-border);
+    background: var(--sys-panel);
+    border: 1px solid var(--sys-border);
     padding: 15px 18px;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 0 100%);
 }
@@ -495,32 +702,27 @@ h2 {
     font-size: 0.72rem;
     padding: 2px 8px;
     background: rgba(255, 255, 255, 0.06);
-    color: var(--fc-khaki);
+    color: var(--sys-text-muted);
 }
 
 .status-active {
-    background: rgba(245, 166, 35, 0.2);
-    color: var(--fc-amber);
+    background: rgba(252, 238, 10, 0.2);
+    color: var(--sys-primary);
 }
 
-.rarity-gold { border-left: 5px solid var(--fc-amber); }
-.rarity-gold .item-type { color: var(--fc-amber); }
+.rarity-gold { border-left: 5px solid var(--sys-primary); }
+.rarity-gold .item-type { color: var(--sys-primary); }
 
-.rarity-red { border-left: 5px solid var(--fc-red); }
-.rarity-red .item-type { color: var(--fc-red); }
+.rarity-red { border-left: 5px solid var(--sys-accent); }
+.rarity-red .item-type { color: var(--sys-accent); }
 
-.rarity-olive { border-left: 5px solid var(--fc-green); }
-.rarity-olive .item-type { color: var(--fc-green); }
+.rarity-olive { border-left: 5px solid var(--sys-secondary); }
+.rarity-olive .item-type { color: var(--sys-secondary); }
 
-/* ================= POSTOS AVANÇADOS (HISTÓRICO DE EXPERIÊNCIA) ================= */
 .outpost-timeline {
     position: relative;
     padding-left: 18px;
-    border-left: 2px dashed var(--fc-border);
-}
-
-.outpost-card {
-    position: relative;
+    border-left: 2px dashed var(--sys-border);
 }
 
 .outpost-status-bar {
@@ -537,38 +739,38 @@ h2 {
     font-size: 0.9rem;
     padding: 2px 10px;
     letter-spacing: 1px;
-    background: #101512;
+    background: #06080d;
 }
 
 .outpost-coords {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--fc-khaki);
+    color: var(--sys-text-muted);
 }
 
 .active-outpost {
-    border-left: 5px solid var(--fc-red);
-    background: linear-gradient(90deg, rgba(230, 57, 70, 0.12), var(--fc-card) 40%);
+    border-left: 5px solid var(--sys-accent);
+    background: linear-gradient(90deg, rgba(255, 0, 60, 0.1), var(--sys-card) 40%);
 }
 
 .active-outpost .outpost-badge {
-    color: var(--fc-red);
-    border: 1px solid rgba(230, 57, 70, 0.4);
+    color: var(--sys-accent);
+    border: 1px solid rgba(255, 0, 60, 0.4);
 }
 
 .liberated-outpost {
-    border-left: 5px solid var(--fc-green);
+    border-left: 5px solid var(--sys-green);
 }
 
 .liberated-outpost .outpost-badge {
-    color: var(--fc-green);
-    border: 1px solid rgba(82, 183, 136, 0.3);
+    color: var(--sys-green);
+    border: 1px solid rgba(0, 255, 102, 0.3);
 }
 
 .outpost-brief {
     margin: 4px 0 10px 0;
     font-size: 0.92rem;
-    color: var(--fc-text-muted);
+    color: var(--sys-text-muted);
     line-height: 1.4;
 }
 
@@ -576,10 +778,9 @@ h2 {
     display: inline-block;
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     letter-spacing: 1px;
     opacity: 0.75;
-    transition: opacity 0.2s, transform 0.2s;
 }
 
 .fc-card:hover .click-prompt {
@@ -597,17 +798,17 @@ h2 {
     text-align: center;
     font-family: var(--font-mono);
     font-size: 0.85rem;
-    color: var(--fc-text-muted);
+    color: var(--sys-text-muted);
 }
 
 .footer-line {
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--fc-amber), transparent);
+    background: linear-gradient(90deg, transparent, var(--sys-primary), transparent);
     margin-bottom: 15px;
 }
 
 .fc-footer a {
-    color: var(--fc-amber);
+    color: var(--sys-primary);
     text-decoration: none;
     font-weight: bold;
 }
@@ -616,11 +817,11 @@ h2 {
     text-decoration: underline;
 }
 
-/* ================= MODAIS DE DOSSIÊ TÁTICO ================= */
+/* ================= MODAIS ================= */
 .fc-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(8, 11, 9, 0.88);
+    background: rgba(3, 4, 7, 0.9);
     backdrop-filter: blur(6px);
     display: flex;
     justify-content: center;
@@ -638,8 +839,8 @@ h2 {
 }
 
 .fc-modal {
-    background: var(--fc-panel);
-    border: 2px solid var(--fc-amber);
+    background: var(--sys-panel);
+    border: 2px solid var(--sys-primary);
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
     width: 100%;
     max-width: 600px;
@@ -662,15 +863,13 @@ h2 {
     border: none;
     font-size: 2.2rem;
     font-family: var(--font-heading);
-    color: var(--fc-text-muted);
+    color: var(--sys-text-muted);
     cursor: pointer;
     line-height: 1;
-    transition: color 0.2s ease, transform 0.2s ease;
 }
 
 .close-btn:hover {
-    color: var(--fc-red);
-    transform: scale(1.15);
+    color: var(--sys-accent);
 }
 
 .modal-tag {
@@ -682,21 +881,21 @@ h2 {
     margin-bottom: 8px;
 }
 
-.tag-amber { background: rgba(245, 166, 35, 0.15); color: var(--fc-amber); border-left: 3px solid var(--fc-amber); }
-.tag-red { background: rgba(230, 57, 70, 0.15); color: var(--fc-red); border-left: 3px solid var(--fc-red); }
-.tag-green { background: rgba(82, 183, 136, 0.15); color: var(--fc-green); border-left: 3px solid var(--fc-green); }
+.tag-amber { background: rgba(252, 238, 10, 0.15); color: var(--sys-primary); border-left: 3px solid var(--sys-primary); }
+.tag-red { background: rgba(255, 0, 60, 0.15); color: var(--sys-accent); border-left: 3px solid var(--sys-accent); }
+.tag-green { background: rgba(0, 255, 102, 0.15); color: var(--sys-green); border-left: 3px solid var(--sys-green); }
 
 .fc-divider {
     border: none;
     height: 2px;
-    background: var(--fc-border);
+    background: var(--sys-border);
     margin: 12px 0 20px 0;
 }
 
 .intel-box {
-    background: var(--fc-card);
-    border: 1px solid var(--fc-border);
-    border-left: 5px solid var(--fc-amber);
+    background: var(--sys-card);
+    border: 1px solid var(--sys-border);
+    border-left: 5px solid var(--sys-primary);
     padding: 12px 15px;
     margin-top: 12px;
     font-size: 0.98rem;
@@ -710,14 +909,13 @@ h2 {
 
 .mission-objectives-full li {
     margin-bottom: 12px;
-    color: var(--fc-text);
+    color: var(--sys-text);
 }
 
 .mission-objectives-full strong {
-    color: var(--fc-amber);
+    color: var(--sys-primary);
 }
 
-/* ================= ANIMAÇÕES & RESPONSIVIDADE ================= */
 @keyframes pulse {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.35; }
@@ -736,5 +934,10 @@ h2 {
         flex-direction: column;
         align-items: flex-start;
         gap: 3px;
+    }
+    .control-deck-bar {
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-start;
     }
 }

@@ -3,27 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIAN SANTOS // DOSSIÊ TÁTICO QA & BUG HUNTER</title>
+    <title>RIAN SANTOS // KIROSHI-RESOLVER OS (CYBERPUNK x FAR CRY)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body data-theme="cyberpunk">
 
-    <!-- EFEITO DE OVERLAY TÁTICO (VINHETA E SCANLINES SUAVES) -->
+    <!-- OVERLAY TÁTICO & SCANLINES -->
     <div class="tactical-overlay" aria-hidden="true"></div>
 
-    <!-- NOTIFICAÇÃO TOAST (COPIAR CONTATO) -->
+    <!-- NOTIFICAÇÃO TOAST -->
     <div id="tacticalToast" class="tactical-toast" role="status" aria-live="polite">
-        <span class="diamond-icon">◆</span> <span id="toastMessage">DADOS COPIADOS PARA O RÁDIO</span>
+        <span class="diamond-icon">◆</span> <span id="toastMessage">TRANSMISSÃO ESTABELECIDA</span>
     </div>
 
-    <!-- ================= HUD TÁTICO SUPERIOR (ESTILO FAR CRY) ================= -->
+    <!-- ================= HUD SUPERIOR HÍBRIDO (KIROSHI x RESOLVER) ================= -->
     <header class="fc-hud-wrapper">
         <div class="fc-hud-container">
             
-            <!-- BÚSSOLA HORIZONTAL INTERATIVA -->
+            <!-- BARRA DE CONTROLE TÁTICO & ALTERNADOR DE TEMA -->
+            <div class="control-deck-bar">
+                <div class="deck-group">
+                    <span class="deck-label">[SYS.HUD]</span>
+                    <button type="button" id="themeToggleBtn" class="deck-btn cyberpunk-active">
+                        ⚡ MODO: <span id="themeName">NIGHT CITY (CYBERPUNK)</span>
+                    </button>
+                    <button type="button" id="audioToggleBtn" class="deck-btn">
+                        🔊 ÁUDIO TÁTICO: <span id="audioStatus">OFF</span>
+                    </button>
+                </div>
+                <div class="deck-group system-clock">
+                    <span class="pulse-dot"></span>
+                    <span id="systemClock">2026.10.25 // 20:35:00</span>
+                </div>
+            </div>
+
+            <!-- BÚSSOLA REATIVA A MOUSE & SCROLL -->
             <div class="compass-bar" aria-hidden="true">
                 <div class="compass-center-marker">▼</div>
                 <div id="compassTrack" class="compass-track">
@@ -40,35 +57,35 @@
                 </div>
             </div>
 
-            <!-- PAINEL DE IDENTIFICAÇÃO DO OPERADOR -->
+            <!-- PAINEL PRINCIPAL DE IDENTIFICAÇÃO -->
             <div class="hud-main-bar">
                 <div class="operator-info">
                     <div class="faction-tag">
-                        <span class="pulse-dot"></span> OPERADOR EM CAMPO // DESDE 2015
+                        <span class="cyber-bracket">[</span> NETRUNNER &amp; BUG HUNTER <span class="cyber-bracket">]</span> // DESDE 2015
                     </div>
                     <h1 class="char-name">RIAN BARBOSA DOS SANTOS</h1>
-                    <p class="char-class">ESPECIALISTA TÁTICO: ANALISTA DE QA PLENO &amp; BUG HUNTER</p>
+                    <p class="char-class">ESPECIALISTA TÁTICO: ANALISTA DE QA PLENO &amp; ENGENHEIRO DE AUTOMAÇÃO</p>
                 </div>
 
                 <div class="rank-badge" title="Mais de 10 anos neutralizando bugs em produção">
                     <div class="rank-chevron">▲</div>
                     <div class="rank-details">
-                        <span class="rank-label">VETERANO</span>
-                        <span class="rank-number">DESDE 2015</span>
-                        <span class="rank-sub">EM OPERAÇÃO</span>
+                        <span class="rank-label">NETRUNNER RANK</span>
+                        <span class="rank-number">VETERANO</span>
+                        <span class="rank-sub">ATIVO NO SISTEMA</span>
                     </div>
                 </div>
             </div>
 
-            <!-- COMUNICAÇÃO VIA RÁDIO (BOTÕES DE CÓPIA RÁPIDA + LINKEDIN) -->
+            <!-- COMUNICAÇÃO VIA RÁDIO -->
             <div class="hud-comms-bar">
-                <button type="button" class="comm-btn comm-phone" data-copy="99142-5840" title="Clique para copiar o telefone">
+                <button type="button" class="comm-btn comm-phone" data-copy="99142-5840" title="Copiar Telefone">
                     <span class="comm-tag">[FREQ. RÁDIO / TEL]</span>
                     <span class="comm-val">99142-5840</span>
                     <span class="comm-action">COPIAR ⎘</span>
                 </button>
 
-                <button type="button" class="comm-btn comm-email" data-copy="rianbarbosa35@gmail.com" title="Clique para copiar o e-mail">
+                <button type="button" class="comm-btn comm-email" data-copy="rianbarbosa35@gmail.com" title="Copiar E-mail">
                     <span class="comm-tag">[TRANSMISSÃO / E-MAIL]</span>
                     <span class="comm-val">rianbarbosa35@gmail.com</span>
                     <span class="comm-action">COPIAR ⎘</span>
@@ -81,9 +98,9 @@
                 </a>
             </div>
 
-            <!-- BARRA DE DOMÍNIO DE TERRITÓRIO (SCROLL PROGRESS) -->
+            <!-- BARRA DE RECONHECIMENTO DE TERRITÓRIO -->
             <div class="territory-progress">
-                <span class="tp-label">RECONHECIMENTO DO DOSSIÊ</span>
+                <span class="tp-label">PROGRESSO DE SINCRONIZAÇÃO</span>
                 <div class="tp-bar-bg">
                     <div id="xpBar" class="tp-bar-fill"></div>
                 </div>
@@ -93,15 +110,44 @@
         </div>
     </header>
 
-    <!-- ================= CONTEÚDO PRINCIPAL / MAPA TÁTICO ================= -->
+    <!-- ================= CONTEÚDO PRINCIPAL / MAPA DE DADOS ================= -->
     <div class="fc-container">
         
         <main class="tactical-grid">
             
-            <!-- COLUNA ESQUERDA: ÁRVORE DE SOBREVIVÊNCIA & ARSENAL -->
+            <!-- COLUNA ESQUERDA: RADAR BIOMÉTRICO KIROSHI & SKILLS -->
             <div class="tactical-column">
                 
-                <!-- ÁRVORE DE HABILIDADES (TATUAGENS / PERKS DE SOBREVIVÊNCIA) -->
+                <!-- RADAR BIOMÉTRICO (SVG STATS) -->
+                <section class="fc-section bio-radar-section">
+                    <div class="section-header">
+                        <span class="waypoint-diamond">◆</span>
+                        <h2>[DIAGNÓSTICO DE CAPACIDADES KIROSHI]</h2>
+                    </div>
+                    <div class="radar-container">
+                        <svg class="radar-svg" viewBox="0 0 200 200">
+                            <!-- Teias de aranha do radar -->
+                            <polygon points="100,20 176,75 147,162 53,162 24,75" class="radar-web" />
+                            <polygon points="100,50 138,77 123,121 77,121 62,77" class="radar-web" />
+                            <line x1="100" y1="100" x2="100" y2="20" class="radar-line" />
+                            <line x1="100" y1="100" x2="176" y2="75" class="radar-line" />
+                            <line x1="100" y1="100" x2="147" y2="162" class="radar-line" />
+                            <line x1="100" y1="100" x2="53" y2="162" class="radar-line" />
+                            <line x1="100" y1="100" x2="24" y2="75" class="radar-line" />
+                            <!-- Polígono preenchido com dados reais de QA -->
+                            <polygon points="100,24 165,72 138,150 63,150 32,78" class="radar-polygon" />
+                        </svg>
+                        <div class="radar-legend">
+                            <div class="radar-stat"><span>AUTOMAÇÃO E2E:</span> <strong>96%</strong></div>
+                            <div class="radar-stat"><span>API &amp; SQL:</span> <strong>94%</strong></div>
+                            <div class="radar-stat"><span>IA &amp; LLMS:</span> <strong>92%</strong></div>
+                            <div class="radar-stat"><span>DEVOPS &amp; SEC:</span> <strong>90%</strong></div>
+                            <div class="radar-stat"><span>GESTÃO TMMi:</span> <strong>98%</strong></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ÁRVORE DE HABILIDADES (PERKS) -->
                 <section class="fc-section">
                     <div class="section-header">
                         <span class="waypoint-diamond">◆</span>
@@ -161,7 +207,7 @@
                     </div>
                 </section>
                     
-                <!-- ARSENAL & CREDENCIAIS (FORMAÇÃO) -->
+                <!-- ARSENAL & CREDENCIAIS -->
                 <section class="fc-section">
                     <div class="section-header">
                         <span class="waypoint-diamond">◆</span>
@@ -200,8 +246,36 @@
 
             </div>
 
-            <!-- COLUNA DIREITA: POSTOS AVANÇADOS & OPERAÇÕES (EXPERIÊNCIA) -->
+            <!-- COLUNA DIREITA: MINIGAME BREACH PROTOCOL & OPERAÇÕES -->
             <div class="tactical-column">
+                
+                <!-- PAINEL DE BREACH PROTOCOL (HACKEO CYBERPUNK) -->
+                <section class="fc-section breach-section">
+                    <div class="section-header">
+                        <span class="waypoint-diamond">◆</span>
+                        <h2>[MINIGAME: BREACH PROTOCOL QA]</h2>
+                    </div>
+                    <div class="breach-box">
+                        <p class="breach-desc">Insira a sequência correta de códigos hexadecimais para desbloquear a Otimização de Bugs:</p>
+                        <div class="matrix-grid" id="matrixGrid">
+                            <span>1C</span><span>BD</span><span>55</span><span>E9</span>
+                            <span>7A</span><span>1C</span><span>BD</span><span>55</span>
+                            <span>E9</span><span>7A</span><span>1C</span><span>BD</span>
+                        </div>
+                        <div class="ram-buffer-area">
+                            <span>BUFFER DE RAM:</span>
+                            <div id="ramSlots" class="ram-slots">
+                                <span class="ram-slot">--</span>
+                                <span class="ram-slot">--</span>
+                                <span class="ram-slot">--</span>
+                            </div>
+                            <button type="button" id="breachBtn" class="breach-exec-btn">EXECUTAR HACK</button>
+                        </div>
+                        <p id="breachResult" class="breach-status">// STATUS: AGUARDANDO ENTRADA</p>
+                    </div>
+                </section>
+
+                <!-- POSTOS AVANÇADOS (EXPERIÊNCIA) -->
                 <section class="fc-section">
                     <div class="section-header">
                         <span class="waypoint-diamond">◆</span>
@@ -269,13 +343,11 @@
         <!-- RODAPÉ DO TERMINAL -->
         <footer class="fc-footer">
             <div class="footer-line"></div>
-            <p>TERMINAL TÁTICO DE PROPRIEDADE DE <strong>RIAN B. SANTOS</strong> // ESTABELEÇA CONTATO DIRETO VIA <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer">REDE LINKEDIN</a></p>
+            <p>KIROSHI-RESOLVER OS // PROPRIEDADE DE <strong>RIAN B. SANTOS</strong> // CONECTE-SE VIA <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer">LINKEDIN</a></p>
         </footer>
     </div>
 
-    <!-- ================= MODAIS DE INTELIGÊNCIA (DOSSIÊS SECRETOS) ================= -->
-    
-    <!-- MODAIS DE SKILLS -->
+    <!-- ================= MODAIS DE INTELIGÊNCIA ================= -->
     <div id="pop-automation" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="fc-modal">
             <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
@@ -323,7 +395,6 @@
         </div>
     </div>
 
-    <!-- MODAIS DE EXPERIÊNCIAS (POSTOS AVANÇADOS) -->
     <div id="pop-deloitte" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
         <div class="fc-modal">
             <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
