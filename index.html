@@ -3,157 +3,262 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIAN SANTOS | BUG HUNTER PORTIFOLIO</title>
+    <title>RIAN SANTOS // DOSSIÊ TÁTICO QA & BUG HUNTER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <!-- Fontes no estilo do jogo -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- ================= HUD HEADER FIXO NO TOPO ================= -->
-    <div class="hud-fixed-wrapper">
-        <div class="hud-fixed-container">
-            <header class="hud-header">
-                <div class="character-info">
-                    <h1 class="char-name">RIAN BARBOSA DOS SANTOS</h1>
-                    <p class="char-class">CLASSE ATIVA: ANALISTA DE QA PLENO | BUG HUNTER</p>
-                </div>
-                <div class="lvl-badge">
-                    <span>PLAYER ONLINE</span>
-                    <span class="lvl-number">DE 2015</span>
-                    <span class="lvl-xp">NO SERVIDOR</span>
-                </div>
-            </header>
+    <!-- EFEITO DE OVERLAY TÁTICO (VINHETA E SCANLINES SUAVES) -->
+    <div class="tactical-overlay" aria-hidden="true"></div>
 
-            <div class="hud-sub-bar">
-                <div class="hud-bar shield">ID (CONTATO): 99142-5840</div>
-                <div class="hud-bar hp">CHAVE DE ACESSO (E-MAIL): rianbarbosa35@gmail.com</div>
-            </div>
-
-            <!-- BARRA DE PROGRESSO DE ROLAGEM (XP BAR) -->
-            <div class="xp-progress-wrapper">
-                <span class="xp-label">XP PROGRESS</span>
-                <div class="xp-bar-container">
-                    <div id="xpBar" class="xp-bar-fill"></div>
-                </div>
-                <span id="xpPercentage" class="xp-counter">0%</span>
-            </div>
-        </div>
+    <!-- NOTIFICAÇÃO TOAST (COPIAR CONTATO) -->
+    <div id="tacticalToast" class="tactical-toast" role="status" aria-live="polite">
+        <span class="diamond-icon">◆</span> <span id="toastMessage">DADOS COPIADOS PARA O RÁDIO</span>
     </div>
 
-    <!-- ================= CONTEÚDO PRINCIPAL / INTERFACE ================= -->
-    <div class="borderlands-container">
-        
-        <main class="echo-menu">
+    <!-- ================= HUD TÁTICO SUPERIOR (ESTILO FAR CRY) ================= -->
+    <header class="fc-hud-wrapper">
+        <div class="fc-hud-container">
             
-            <!-- COLUNA DA ESQUERDA: SKILLS & EQUIPAMENTOS -->
-            <div class="echo-column">
+            <!-- BÚSSOLA HORIZONTAL INTERATIVA -->
+            <div class="compass-bar" aria-hidden="true">
+                <div class="compass-center-marker">▼</div>
+                <div id="compassTrack" class="compass-track">
+                    <span>NW</span><span>|</span><span>330</span><span>|</span>
+                    <span class="cardinal">N</span><span>|</span><span>030</span><span>|</span>
+                    <span>NE</span><span>|</span><span>060</span><span>|</span>
+                    <span class="cardinal">E</span><span>|</span><span>120</span><span>|</span>
+                    <span>SE</span><span>|</span><span>150</span><span>|</span>
+                    <span class="cardinal">S</span><span>|</span><span>210</span><span>|</span>
+                    <span>SW</span><span>|</span><span>240</span><span>|</span>
+                    <span class="cardinal">W</span><span>|</span><span>300</span><span>|</span>
+                    <span>NW</span><span>|</span><span>330</span><span>|</span>
+                    <span class="cardinal">N</span><span>|</span><span>030</span><span>|</span>
+                </div>
+            </div>
+
+            <!-- PAINEL DE IDENTIFICAÇÃO DO OPERADOR -->
+            <div class="hud-main-bar">
+                <div class="operator-info">
+                    <div class="faction-tag">
+                        <span class="pulse-dot"></span> OPERADOR EM CAMPO // DESDE 2015
+                    </div>
+                    <h1 class="char-name">RIAN BARBOSA DOS SANTOS</h1>
+                    <p class="char-class">ESPECIALISTA TÁTICO: ANALISTA DE QA PLENO &amp; BUG HUNTER</p>
+                </div>
+
+                <div class="rank-badge" title="Mais de 10 anos neutralizando bugs em produção">
+                    <div class="rank-chevron">▲</div>
+                    <div class="rank-details">
+                        <span class="rank-label">VETERANO</span>
+                        <span class="rank-number">DESDE 2015</span>
+                        <span class="rank-sub">EM OPERAÇÃO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COMUNICAÇÃO VIA RÁDIO (BOTÕES DE CÓPIA RÁPIDA + LINKEDIN) -->
+            <div class="hud-comms-bar">
+                <button type="button" class="comm-btn comm-phone" data-copy="99142-5840" title="Clique para copiar o telefone">
+                    <span class="comm-tag">[FREQ. RÁDIO / TEL]</span>
+                    <span class="comm-val">99142-5840</span>
+                    <span class="comm-action">COPIAR ⎘</span>
+                </button>
+
+                <button type="button" class="comm-btn comm-email" data-copy="rianbarbosa35@gmail.com" title="Clique para copiar o e-mail">
+                    <span class="comm-tag">[TRANSMISSÃO / E-MAIL]</span>
+                    <span class="comm-val">rianbarbosa35@gmail.com</span>
+                    <span class="comm-action">COPIAR ⎘</span>
+                </button>
+
+                <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer" class="comm-btn comm-linkedin">
+                    <span class="comm-tag">[REDE EXTERNA]</span>
+                    <span class="comm-val">LINKEDIN // RIANBSANTOS</span>
+                    <span class="comm-action">ACESSAR ↗</span>
+                </a>
+            </div>
+
+            <!-- BARRA DE DOMÍNIO DE TERRITÓRIO (SCROLL PROGRESS) -->
+            <div class="territory-progress">
+                <span class="tp-label">RECONHECIMENTO DO DOSSIÊ</span>
+                <div class="tp-bar-bg">
+                    <div id="xpBar" class="tp-bar-fill"></div>
+                </div>
+                <span id="xpPercentage" class="tp-counter">0%</span>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- ================= CONTEÚDO PRINCIPAL / MAPA TÁTICO ================= -->
+    <div class="fc-container">
+        
+        <main class="tactical-grid">
+            
+            <!-- COLUNA ESQUERDA: ÁRVORE DE SOBREVIVÊNCIA & ARSENAL -->
+            <div class="tactical-column">
                 
-                <!-- ÁRVORE DE SKILLS -->
-                <section class="echo-section">
-                    <h2>[ÁRVORE DE HABILIDADES]</h2>
+                <!-- ÁRVORE DE HABILIDADES (TATUAGENS / PERKS DE SOBREVIVÊNCIA) -->
+                <section class="fc-section">
+                    <div class="section-header">
+                        <span class="waypoint-diamond">◆</span>
+                        <h2>[ÁRVORE DE SOBREVIVÊNCIA // PERKS]</h2>
+                    </div>
+
                     <div class="skills-grid">
                         
-                        <div class="skill-card active-tree bl-interactive" data-popup="pop-automation">
-                            <div class="skill-icon">🤖</div>
-                            <div class="skill-details">
+                        <button type="button" class="fc-card skill-card perk-assault" data-popup="pop-automation">
+                            <div class="skill-emblem">
+                                <span>🎯</span>
+                            </div>
+                            <div class="card-content">
+                                <span class="perk-category">LINHA DE FRENTE // TIER 1</span>
                                 <h3>AUTOMAÇÃO DE TESTES</h3>
                                 <p>Cypress, Robot Framework, Selenium e Playwright.</p>
                             </div>
-                        </div>
+                            <span class="inspect-icon" aria-hidden="true">+</span>
+                        </button>
 
-                        <div class="skill-card active-tree bl-interactive" data-popup="pop-api">
-                            <div class="skill-icon">🔌</div>
-                            <div class="skill-details">
-                                <h3>API & Data</h3>
+                        <button type="button" class="fc-card skill-card perk-intel" data-popup="pop-api">
+                            <div class="skill-emblem">
+                                <span>📡</span>
+                            </div>
+                            <div class="card-content">
+                                <span class="perk-category">INTELIGÊNCIA DE DADOS // TIER 2</span>
+                                <h3>API &amp; DATA</h3>
                                 <p>Postman, Swagger, SQL (SQL Server, Oracle e PL/SQL).</p>
                             </div>
-                        </div>
+                            <span class="inspect-icon" aria-hidden="true">+</span>
+                        </button>
 
-                        <div class="skill-card active-tree bl-interactive" data-popup="pop-ai">
-                            <div class="skill-icon">🧠</div>
-                            <div class="skill-details">
-                                <h3>IA</h3>
+                        <button type="button" class="fc-card skill-card perk-special" data-popup="pop-ai">
+                            <div class="skill-emblem">
+                                <span>⚡</span>
+                            </div>
+                            <div class="card-content">
+                                <span class="perk-category">TECNOLOGIA EXPERIMENTAL // TIER 3</span>
+                                <h3>INTELIGÊNCIA ARTIFICIAL</h3>
                                 <p>Copilot, Gemini e OpenAI.</p>
                             </div>
-                        </div>
+                            <span class="inspect-icon" aria-hidden="true">+</span>
+                        </button>
 
-                        <div class="skill-card utility-tree bl-interactive" data-popup="pop-devops">
-                            <div class="skill-icon">🛡️</div>
-                            <div class="skill-details">
-                                <h3>Cyber Security & DevOps</h3>
-                                <p>Azure DevOps, GitHub, CI/CD pipelines e Gestão de Defeitos</p>
+                        <button type="button" class="fc-card skill-card perk-defense" data-popup="pop-devops">
+                            <div class="skill-emblem">
+                                <span>🛡️</span>
                             </div>
-                        </div>
+                            <div class="card-content">
+                                <span class="perk-category">FORTIFICAÇÃO &amp; DEFESA // TIER 4</span>
+                                <h3>CYBER SECURITY &amp; DEVOPS</h3>
+                                <p>Azure DevOps, GitHub, CI/CD pipelines e Gestão de Defeitos.</p>
+                            </div>
+                            <span class="inspect-icon" aria-hidden="true">+</span>
+                        </button>
 
                     </div>
                 </section>
                     
-                <!-- INVENTÁRIO (CERTIFICAÇÕES E FORMAÇÃO) -->
-                <section class="echo-section">
-                    <br>
-                    <h2>[CLASSES CONCLUÍDAS/EM ANDAMENTO]</h2>
-                    <div class="inventory-list">
-                        <div class="inv-item orange-rarity">
-                            <span class="item-type">LENDÁRIO (PÓS-GRADUAÇÃO)</span>
+                <!-- ARSENAL & CREDENCIAIS (FORMAÇÃO) -->
+                <section class="fc-section">
+                    <div class="section-header">
+                        <span class="waypoint-diamond">◆</span>
+                        <h2>[ARSENAL &amp; CREDENCIAIS DE CAMPO]</h2>
+                    </div>
+
+                    <div class="loadout-list">
+                        <div class="loadout-item rarity-gold">
+                            <div class="loadout-header">
+                                <span class="item-type">★ EQUIPAMENTO SUPREMO (PÓS-GRADUAÇÃO)</span>
+                                <span class="item-status status-active">EM FORJA</span>
+                            </div>
                             <h3>Qualidade e Teste de Software</h3>
                             <p>UniCesumar (Em andamento)</p>
                         </div>
-                        <div class="inv-item purple-rarity">
-                            <span class="item-type">ÉPICO (GRADUAÇÃO)</span>
+
+                        <div class="loadout-item rarity-red">
+                            <div class="loadout-header">
+                                <span class="item-type">◆ CREDENCIAL DE COMANDO (GRADUAÇÃO)</span>
+                                <span class="item-status">CONCLUÍDO</span>
+                            </div>
                             <h3>Análise e Desenvolvimento de Sistemas</h3>
                             <p>Estácio</p>
                         </div>
-                        <div class="inv-item blue-rarity">
-                            <span class="item-type">RARO (CERTIFICADO)</span>
+
+                        <div class="loadout-item rarity-olive">
+                            <div class="loadout-header">
+                                <span class="item-type">▲ ESPECIALIZAÇÃO TÁTICA (CERTIFICADO)</span>
+                                <span class="item-status">CONCLUÍDO</span>
+                            </div>
                             <h3>Curso Completo Cyber Security</h3>
-                            <p>Segurança da Informação & DevOps Contínuo</p>
+                            <p>Segurança da Informação &amp; DevOps Contínuo</p>
                         </div>
                     </div>
                 </section>
 
             </div>
 
-            <!-- COLUNA DA DIREITA: LOG DE MISSÕES (EXPERIÊNCIA) -->
-            <div class="echo-column">
-                <section class="echo-section">
-                    <h2>[QUESTS CONCLUÍDAS/EM ANDAMENTO]</h2>
-                    <div class="mission-log">
+            <!-- COLUNA DIREITA: POSTOS AVANÇADOS & OPERAÇÕES (EXPERIÊNCIA) -->
+            <div class="tactical-column">
+                <section class="fc-section">
+                    <div class="section-header">
+                        <span class="waypoint-diamond">◆</span>
+                        <h2>[OPERAÇÕES &amp; POSTOS AVANÇADOS]</h2>
+                    </div>
 
-                        <div class="mission-card current-mission bl-interactive" data-popup="pop-deloitte">
-                            <span class="mission-badge">QUEST ATIVA</span>
+                    <div class="outpost-timeline">
+
+                        <button type="button" class="fc-card outpost-card active-outpost" data-popup="pop-deloitte">
+                            <div class="outpost-status-bar">
+                                <span class="outpost-badge"><span class="blink-dot">●</span> OPERAÇÃO ATIVA</span>
+                                <span class="outpost-coords">NOV 2024 - PRESENTE</span>
+                            </div>
                             <h3>Deloitte // Analista de QA Pleno</h3>
-                            <p class="mission-date">Nov 2024 - Presente</p>
-                            <p class="click-prompt">CLIQUE PARA TRANSMISSÃO DE DADOS</p>
-                        </div>
+                            <p class="outpost-brief">Validação de IA (ChatPetrobras), CNPJ Alfanumérico e segurança financeira (Porto Seguro).</p>
+                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
+                        </button>
 
-                        <div class="mission-card completed-mission bl-interactive" data-popup="pop-ecs">
-                            <span class="mission-badge">QUEST CONCLUÍDA</span>
+                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-ecs">
+                            <div class="outpost-status-bar">
+                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
+                                <span class="outpost-coords">SET 2022 - JUN 2024</span>
+                            </div>
                             <h3>ECS Inovação // Analista de QA Pleno</h3>
-                            <p class="mission-date">Set 2022 - Jun 2024</p>
-                            <p class="click-prompt">CLIQUE PARA TRANSMISSÃO DE DADOS</p>
-                        </div>
+                            <p class="outpost-brief">Automação Cypress (+20% cobertura), validação de APIs/SQL e regras críticas do ecossistema Farma.</p>
+                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
+                        </button>
 
-                        <div class="mission-card completed-mission bl-interactive" data-popup="pop-indra">
-                            <span class="mission-badge">QUEST CONCLUÍDA</span>
+                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-indra">
+                            <div class="outpost-status-bar">
+                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
+                                <span class="outpost-coords">SET 2021 - SET 2022</span>
+                            </div>
                             <h3>Indra // Analista de QA Pleno</h3>
-                            <p class="mission-date">Set 2021 - Set 2022</p>
-                            <p class="click-prompt">CLIQUE PARA TRANSMISSÃO DE DADOS</p>
-                        </div>
+                            <p class="outpost-brief">Incremento de 40% em testes automatizados (Cypress/Robot), métricas TMMi e gestão Jira/Azure.</p>
+                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
+                        </button>
 
-                        <div class="mission-card completed-mission bl-interactive" data-popup="pop-wati">
-                            <span class="mission-badge">QUEST CONCLUÍDA</span>
+                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-wati">
+                            <div class="outpost-status-bar">
+                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
+                                <span class="outpost-coords">JUL 2020 - SET 2021</span>
+                            </div>
                             <h3>WATI Consultoria // Analista de QA</h3>
-                            <p class="mission-date">Jul 2020 - Set 2021</p>
-                            <p class="click-prompt">CLIQUE PARA TRANSMISSÃO DE DADOS</p>
-                        </div>
+                            <p class="outpost-brief">Sistemas críticos de Urgência Hospitalar (PEP/SoulMV), regressão Selenium/Robot e SQL Developer.</p>
+                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
+                        </button>
 
-                        <div class="mission-card completed-mission bl-interactive" data-popup="pop-accenture">
-                            <span class="mission-badge">QUEST CONCLUÍDA</span>
+                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-accenture">
+                            <div class="outpost-status-bar">
+                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
+                                <span class="outpost-coords">JUN 2015 - JUL 2020</span>
+                            </div>
                             <h3>Accenture Brasil // Analista de QA</h3>
-                            <p class="mission-date">Jun 2015 - Jul 2020</p>
-                            <p class="click-prompt">CLIQUE PARA TRANSMISSÃO DE DADOS</p>
-                        </div>
+                            <p class="outpost-brief">5 anos em operações massivas de Telecom (Oi), scripts Oracle PL/SQL, ALM e Azure DevOps.</p>
+                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
+                        </button>
 
                     </div>
                 </section>
@@ -161,129 +266,130 @@
 
         </main>
         
-        <!-- FOOTER DA INTERFACE -->
-        <footer class="echo-footer">
-            <p>//DISPOSITIVO DE CONEXÃO DE PROPRIEDADE DE RIAN B. SANTOS. CONECTE-SE VIA <a href="https://www.linkedin.com/in/rianbsantos" target="_blank">LINKEDIN</a></p>
+        <!-- RODAPÉ DO TERMINAL -->
+        <footer class="fc-footer">
+            <div class="footer-line"></div>
+            <p>TERMINAL TÁTICO DE PROPRIEDADE DE <strong>RIAN B. SANTOS</strong> // ESTABELEÇA CONTATO DIRETO VIA <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer">REDE LINKEDIN</a></p>
         </footer>
     </div>
 
-    <!-- ================= MODAIS / POPUPS (ESTILO ECHO DEVICE) ================= -->
+    <!-- ================= MODAIS DE INTELIGÊNCIA (DOSSIÊS SECRETOS) ================= -->
     
-    <!-- POPUPS DAS SKILLS -->
-    <div id="pop-automation" class="bl-modal-overlay">
-        <div class="bl-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-green">HABILIDADE ATIVA // TIER 1</span>
+    <!-- MODAIS DE SKILLS -->
+    <div id="pop-automation" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-amber">HABILIDADE DE LINHA DE FRENTE // TIER 1</span>
             <h2>AUTOMAÇÃO DE TESTES E ENGENHARIA</h2>
-            <hr class="bl-divider">
+            <hr class="fc-divider">
             <p>Domínio avançado em arquiteturas de automação robustas focadas em Web, Mobile e Regressão de larga escala.</p>
-            <div class="stat-row"><strong>FRAMEWORKS:</strong> Cypress, Robot Framework, Selenium, Playwright.</div>
+            <div class="intel-box"><strong>ARSENAL DE FRAMEWORKS:</strong> Cypress, Robot Framework, Selenium, Playwright.</div>
         </div>
     </div>
 
-    <div id="pop-api" class="bl-modal-overlay">
-        <div class="bl-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-green">HABILIDADE ATIVA // TIER 2</span>
+    <div id="pop-api" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-amber">INTELIGÊNCIA E RECONHECIMENTO // TIER 2</span>
             <h2>INTEGRAÇÕES E MANIPULAÇÃO DE DADOS</h2>
-            <hr class="bl-divider">
+            <hr class="fc-divider">
             <p>Validação rigorosa de backend com testes de integração fim-a-fim e análise estruturada de bancos de dados.</p>
-            <div class="stat-row"><strong>APIs:</strong> Consumo e validação via Postman e documentação Swagger.</div>
-            <div class="stat-row"><strong>DATABASE:</strong> Consultas complexas e manipulação via MS SQL Server e Oracle PL/SQL.</div>
+            <div class="intel-box"><strong>APIs:</strong> Consumo e validação via Postman e documentação Swagger.</div>
+            <div class="intel-box"><strong>DATABASE:</strong> Consultas complexas e manipulação via MS SQL Server e Oracle PL/SQL.</div>
         </div>
     </div>
 
-    <div id="pop-ai" class="bl-modal-overlay">
-        <div class="bl-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-orange">HABILIDADE LENDÁRIA // TIER 3</span>
-            <h2>EMERGING TECH & INTELIGÊNCIA ARTIFICIAL</h2>
-            <hr class="bl-divider">
+    <div id="pop-ai" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-red">ARMAMENTO EXPERIMENTAL // TIER 3</span>
+            <h2>EMERGING TECH &amp; INTELIGÊNCIA ARTIFICIAL</h2>
+            <hr class="fc-divider">
             <p>Especialista em validação estrutural de modelos de linguagem e soluções que empregam Inteligência Artificial.</p>
-            <div class="stat-row"><strong>TECNOLOGIAS:</strong> Google Gemini, OpenAI APIs.</div>
-            <div class="stat-row"><strong>ESPECIALIDADE:</strong> Validação de confiabilidade em IAs conversacionais e ferramentas inteligentes de refatoração de código.</div>
+            <div class="intel-box"><strong>TECNOLOGIAS:</strong> Copilot, Google Gemini, OpenAI APIs.</div>
+            <div class="intel-box"><strong>ESPECIALIDADE:</strong> Validação de confiabilidade em IAs conversacionais e ferramentas inteligentes de refatoração de código.</div>
         </div>
     </div>
 
-    <div id="pop-devops" class="bl-modal-overlay">
-        <div class="bl-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-blue">HABILIDADE DE SUPORTE // TIER 4</span>
-            <h2>CYBER SECURITY & OPERAÇÕES AGILE</h2>
-            <hr class="bl-divider">
+    <div id="pop-devops" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-green">SUPORTE TÁTICO &amp; DEFESA // TIER 4</span>
+            <h2>CYBER SECURITY &amp; OPERAÇÕES AGILE</h2>
+            <hr class="fc-divider">
             <p>Implementação de rotinas seguras e integração contínua para manutenção da integridade dos ambientes de teste.</p>
-            <div class="stat-row"><strong>FERRAMENTAS:</strong> Azure DevOps, GitHub, Jira, Dynatrace, TestLink.</div>
-            <div class="stat-row"><strong>PROCESSOS:</strong> Modelagem de cenários BDD, esteiras de CI/CD e auditoria de logs de segurança.</div>
+            <div class="intel-box"><strong>FERRAMENTAS:</strong> Azure DevOps, GitHub, Jira, Dynatrace, TestLink.</div>
+            <div class="intel-box"><strong>PROCESSOS:</strong> Modelagem de cenários BDD, esteiras de CI/CD e auditoria de logs de segurança.</div>
         </div>
     </div>
 
-    <!-- POPUPS DAS MISSÕES (EXPERIÊNCIAS) -->
-    <div id="pop-deloitte" class="bl-modal-overlay">
-        <div class="bl-modal mission-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-yellow">DETALHES DA OPERAÇÃO ATIVA</span>
-            <h2>MISSÃO: DELOITTE (QA PLENO)</h2>
-            <hr class="bl-divider">
+    <!-- MODAIS DE EXPERIÊNCIAS (POSTOS AVANÇADOS) -->
+    <div id="pop-deloitte" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-red">● RELATÓRIO DA OPERAÇÃO ATIVA</span>
+            <h2>OPERAÇÃO: DELOITTE (QA PLENO)</h2>
+            <hr class="fc-divider">
             <ul class="mission-objectives-full">
-                <li><strong>ChatPetrobras:</strong> Validação minuciosa de solução de IA conversacional baseada em LLM integrada a dados operacionais e fluxos internos da Petrobras[cite: 1].</li>
-                <li><strong>Adequação Federal:</strong> Homologação de ferramenta inteligente para análise e refatoração de código com foco nas normas do CNPJ Alfanumérico[cite: 1].</li>
-                <li><strong>Porto Seguro:</strong> Ajuste estrutural e garantia de segurança/criptografia de dados no fluxo de emissão de boletos corporativos[cite: 1].</li>
+                <li><strong>ChatPetrobras:</strong> Validação minuciosa de solução de IA conversacional baseada em LLM integrada a dados operacionais e fluxos internos da Petrobras.</li>
+                <li><strong>Adequação Federal:</strong> Homologação de ferramenta inteligente para análise e refatoração de código com foco nas normas do CNPJ Alfanumérico.</li>
+                <li><strong>Porto Seguro:</strong> Ajuste estrutural e garantia de segurança/criptografia de dados no fluxo de emissão de boletos corporativos.</li>
             </ul>
         </div>
     </div>
 
-    <div id="pop-ecs" class="bl-modal-overlay">
-        <div class="bl-modal mission-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-green">MISSÃO CONCLUÍDA COM SUCESSO</span>
-            <h2>MISSÃO: ECS INOVAÇÃO (QA PLENO)</h2>
-            <hr class="bl-divider">
+    <div id="pop-ecs" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
+            <h2>OPERAÇÃO: ECS INOVAÇÃO (QA PLENO)</h2>
+            <hr class="fc-divider">
             <ul class="mission-objectives-full">
-                <li><strong>Bônus de Automação:</strong> Ganho de 20% em novos cenários validados via scripts reutilizáveis em Cypress[cite: 1].</li>
-                <li><strong>Backend:</strong> Consumo integral de APIs (Postman/Swagger) combinados com consultas de consistência via Microsoft SQL Server[cite: 1].</li>
-                <li><strong>Ecossistema Farma:</strong> Homologação de regras críticas em fluxos de estoque, vendas online de medicamentos e laudos de clínicas laboratoriais[cite: 1].</li>
+                <li><strong>Bônus de Automação:</strong> Ganho de 20% em novos cenários validados via scripts reutilizáveis em Cypress.</li>
+                <li><strong>Backend:</strong> Consumo integral de APIs (Postman/Swagger) combinados com consultas de consistência via Microsoft SQL Server.</li>
+                <li><strong>Ecossistema Farma:</strong> Homologação de regras críticas em fluxos de estoque, vendas online de medicamentos e laudos de clínicas laboratoriais.</li>
             </ul>
         </div>
     </div>
 
-    <div id="pop-indra" class="bl-modal-overlay">
-        <div class="bl-modal mission-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-green">MISSÃO CONCLUÍDA COM SUCESSO</span>
-            <h2>MISSÃO: INDRA (QA PLENO)</h2>
-            <hr class="bl-divider">
+    <div id="pop-indra" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
+            <h2>OPERAÇÃO: INDRA (QA PLENO)</h2>
+            <hr class="fc-divider">
             <ul class="mission-objectives-full">
-                <li><strong>Eficiência Crítica:</strong> Incremento massivo de 40% no volume de testes validados por meio de automação com Cypress e Robot Framework[cite: 1].</li>
-                <li><strong>Métricas TMMi:</strong> Construção de relatórios estruturados baseados no modelo TMMi para suporte de melhoria contínua[cite: 1].</li>
-                <li><strong>Gerenciamento:</strong> Rastreabilidade ponta a ponta de defeitos em ecossistemas Jira, Azure DevOps e TestLink[cite: 1].</li>
+                <li><strong>Eficiência Crítica:</strong> Incremento massivo de 40% no volume de testes validados por meio de automação com Cypress e Robot Framework.</li>
+                <li><strong>Métricas TMMi:</strong> Construção de relatórios estruturados baseados no modelo TMMi para suporte de melhoria contínua.</li>
+                <li><strong>Gerenciamento:</strong> Rastreabilidade ponta a ponta de defeitos em ecossistemas Jira, Azure DevOps e TestLink.</li>
             </ul>
         </div>
     </div>
 
-    <div id="pop-wati" class="bl-modal-overlay">
-        <div class="bl-modal mission-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-green">MISSÃO CONCLUÍDA COM SUCESSO</span>
-            <h2>MISSÃO: WATI CONSULTORIA (QA)</h2>
-            <hr class="bl-divider">
+    <div id="pop-wati" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
+            <h2>OPERAÇÃO: WATI CONSULTORIA (QA)</h2>
+            <hr class="fc-divider">
             <ul class="mission-objectives-full">
-                <li><strong>Fluxos Críticos:</strong> Elaboração e execução de cenários no TestLink focados nos sistemas de Urgência Hospitalar PEP e SoulMV[cite: 1].</li>
-                <li><strong>Automação Web:</strong> Criação de scripts dinâmicos de regressão cross-browser utilizando Selenium e Robot Framework[cite: 1].</li>
-                <li><strong>Bancos de Dados:</strong> Manipulação, extração de dados e validação de regras de backend utilizando SQL Developer[cite: 1].</li>
+                <li><strong>Fluxos Críticos:</strong> Elaboração e execução de cenários no TestLink focados nos sistemas de Urgência Hospitalar PEP e SoulMV.</li>
+                <li><strong>Automação Web:</strong> Criação de scripts dinâmicos de regressão cross-browser utilizando Selenium e Robot Framework.</li>
+                <li><strong>Bancos de Dados:</strong> Manipulação, extração de dados e validação de regras de backend utilizando SQL Developer.</li>
             </ul>
         </div>
     </div>
 
-    <div id="pop-accenture" class="bl-modal-overlay">
-        <div class="bl-modal mission-modal">
-            <span class="close-btn">&times;</span>
-            <span class="modal-rarity text-green">MISSÃO CONCLUÍDA COM SUCESSO</span>
-            <h2>MISSÃO: ACCENTURE BRASIL (QA)</h2>
-            <hr class="bl-divider">
+    <div id="pop-accenture" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="fc-modal">
+            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
+            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
+            <h2>OPERAÇÃO: ACCENTURE BRASIL (QA)</h2>
+            <hr class="fc-divider">
             <ul class="mission-objectives-full">
-                <li><strong>Consolidação:</strong> 5 anos dedicados à garantia de qualidade em produtos web e mobile utilizando ALM e Azure DevOps[cite: 1].</li>
-                <li><strong>Infraestrutura e Dados:</strong> Criação de scripts PL/SQL estruturados em bases Oracle para consistência de dados[cite: 1].</li>
-                <li><strong>Telecom (Oi):</strong> Homologação de ponta a ponta em fluxos massivos de TV por assinatura, internet fixa/móvel e planos telefônicos[cite: 1].</li>
+                <li><strong>Consolidação:</strong> 5 anos dedicados à garantia de qualidade em produtos web e mobile utilizando ALM e Azure DevOps.</li>
+                <li><strong>Infraestrutura e Dados:</strong> Criação de scripts PL/SQL estruturados em bases Oracle para consistência de dados.</li>
+                <li><strong>Telecom (Oi):</strong> Homologação de ponta a ponta em fluxos massivos de TV por assinatura, internet fixa/móvel e planos telefônicos.</li>
             </ul>
         </div>
     </div>
