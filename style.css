@@ -9,7 +9,7 @@
     --text-muted: #71717a;
     
     --accent: #38bdf8;       /* Azul Claro Terminal */
-    --accent-glow: rgba(56, 189, 248, 0.15);
+    --accent-glow: rgba(56, 189, 248, 0.2);
     
     --border: #27272a;
     --border-hover: #3f3f46;
@@ -282,7 +282,7 @@ body {
     color: var(--text-secondary);
 }
 
-/* ================= SKILLS GRID ================= */
+/* ================= SKILLS GRID & ANIMAÇÕES TECH TAGS ================= */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -294,6 +294,12 @@ body {
     border: 1px solid var(--border);
     border-radius: 12px;
     padding: 24px;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.skill-category:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
 }
 
 .skill-category h3 {
@@ -309,7 +315,7 @@ body {
     gap: 8px;
 }
 
-.tag-cloud span {
+.tag-cloud span.tech-tag {
     background: var(--bg-card);
     border: 1px solid var(--border);
     color: var(--text-secondary);
@@ -317,6 +323,30 @@ body {
     border-radius: 6px;
     font-size: 0.85rem;
     font-family: var(--font-mono);
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animação Hover nas Tech Tags */
+.tag-cloud span.tech-tag:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    color: var(--text-primary);
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 6px 16px var(--accent-glow);
+}
+
+/* Animação Click nas Tech Tags */
+.tag-cloud span.tech-tag:active,
+.tag-cloud span.tech-tag.clicked {
+    transform: translateY(0) scale(0.92);
+    background: var(--accent);
+    color: var(--bg-primary);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent);
 }
 
 /* ================= TIMELINE DE EXPERIÊNCIA ================= */
@@ -477,7 +507,7 @@ body {
     color: var(--accent);
 }
 
-/* ================= POPUP DE EXPERIÊNCIA ================= */
+/* ================= POPUP DE EXPERIÊNCIA & TECH ================= */
 .custom-modal-overlay {
     position: fixed;
     inset: 0;

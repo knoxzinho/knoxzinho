@@ -2,9 +2,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const copyButtons = document.querySelectorAll('[data-copy]');
     const toast = document.getElementById('toast');
     const langSelect = document.getElementById('langSelect');
+    const techTags = document.querySelectorAll('.tech-tag');
     let toastTimeout = null;
 
-    // Modais de Experiência
+    // Modais de Experiência e Stack
     const expModal = document.getElementById('expModal');
     const closeExpModal = expModal.querySelector('.close-modal');
     const modalCompanyTag = document.getElementById('modalCompanyTag');
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Dicionário de Traduções (PT, EN, ES)
     const translations = {
         pt: {
-            logo: "Rian Santos_",
+            logo: "Rian Santos",
             nav_about: "Sobre",
             nav_skills: "Skills",
             nav_experience: "Experiência",
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stat_start: "Início na Carreira Tech",
             stat_focus: "Foco em Qualidade & Regressão",
             skills_title: "Stack Tecnológica",
-            skills_subtitle: "Ferramentas e tecnologias que utilizo para garantir excelência em software.",
+            skills_subtitle: "Clique em qualquer tecnologia para inspecionar o status e ver os detalhes.",
             skill_cat1: "Automação & E2E",
             skill_cat2: "APIs & Banco de Dados",
             skill_cat3: "Inteligência Artificial",
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_text: "© 2026 Rian Barbosa Dos Santos. Todos os direitos reservados."
         },
         en: {
-            logo: "Rian Santos_",
+            logo: "Rian Santos",
             nav_about: "About",
             nav_skills: "Skills",
             nav_experience: "Experience",
@@ -90,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stat_start: "Started in Tech",
             stat_focus: "Focus on Quality & Regression",
             skills_title: "Tech Stack",
-            skills_subtitle: "Tools and technologies I use to ensure software excellence.",
+            skills_subtitle: "Click on any technology to inspect its status and details.",
             skill_cat1: "Automation & E2E",
             skill_cat2: "APIs & Databases",
             skill_cat3: "Artificial Intelligence",
@@ -126,7 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_text: "© 2026 Rian Barbosa Dos Santos. All rights reserved."
         },
         es: {
-            logo: "Rian Santos_",
+            logo: "Rian Santos",
             nav_about: "Sobre mí",
             nav_skills: "Skills",
             nav_experience: "Experiencia",
@@ -141,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
             stat_start: "Inicio en Carrera Tech",
             stat_focus: "Enfoque en Calidad & Regresión",
             skills_title: "Stack Tecnológico",
-            skills_subtitle: "Herramientas y tecnologías que utilizo para garantizar excelencia en software.",
+            skills_subtitle: "Haz clic en cualquier tecnología para inspeccionar su estado y detalles.",
             skill_cat1: "Automatización & E2E",
             skill_cat2: "APIs & Base de Datos",
             skill_cat3: "Inteligencia Artificial",
@@ -175,6 +176,90 @@ document.addEventListener('DOMContentLoaded', () => {
             btn_copy_email: "Copiar Correo ⎘",
             btn_copy_phone: "Copiar Teléfono ⎘",
             footer_text: "© 2026 Rian Barbosa Dos Santos. Todos los derechos reservados."
+        }
+    };
+
+    // Dados detalhados das Tecnologias para o Popup
+    const techDetails = {
+        cypress: {
+            tag: "AUTOMAÇÃO E2E // FRONT-END & API",
+            title: "Cypress",
+            content: "<p>Desenvolvimento de arquiteturas escaláveis utilizando padrão <strong>Page Objects</strong>, comandos customizados, interceptação de rotas e integração contínua para regressão rápida e confiável.</p>"
+        },
+        robot: {
+            tag: "AUTOMAÇÃO KEYWORD-DRIVEN",
+            title: "Robot Framework",
+            content: "<p>Criação de suítes de testes legíveis e modulares para validação Web e APIs, facilitando a manutenção e geração de relatórios executivos detalhados.</p>"
+        },
+        selenium: {
+            tag: "AUTOMAÇÃO CROSS-BROWSER",
+            title: "Selenium WebDriver",
+            content: "<p>Execução de baterias de regressão em múltiplos navegadores e sistemas legados críticos de alta disponibilidade.</p>"
+        },
+        playwright: {
+            tag: "AUTOMAÇÃO MODERNA MULTI-TAB",
+            title: "Playwright",
+            content: "<p>Automação veloz com auto-wait nativo, rastreamento de execução (Trace Viewer) e testes paralelos de ponta a ponta.</p>"
+        },
+        postman: {
+            tag: "TESTES DE INTEGRAÇÃO & CONTRATO",
+            title: "Postman",
+            content: "<p>Validação de endpoints REST/GraphQL, automação de coleções, scripts de pré-requisição e asserções de payload/status code.</p>"
+        },
+        swagger: {
+            tag: "DOCUMENTAÇÃO & CONTRATO DE API",
+            title: "Swagger / OpenAPI",
+            content: "<p>Análise de contratos de API, validação de schemas e testes exploratórios diretamente nas especificações de serviços backend.</p>"
+        },
+        sqlserver: {
+            tag: "BANCO DE DADOS RELACIONAL",
+            title: "Microsoft SQL Server",
+            content: "<p>Elaboração de queries complexas (JOINs, Subqueries, Views) para validação de integridade de dados e preparação de massa de testes.</p>"
+        },
+        oracle: {
+            tag: "BANCO DE DADOS CORPORATIVO",
+            title: "Oracle PL/SQL",
+            content: "<p>Cinco anos de experiência manipulando bases massivas em Telecom e Saúde, validando procedures, triggers e consistência transacional.</p>"
+        },
+        copilot: {
+            tag: "IA ASSISTIDA PARA ENGENHARIA",
+            title: "GitHub Copilot",
+            content: "<p>Aceleração na escrita de scripts de automação, refatoração de Page Objects e geração inteligente de cenários Gherkin/BDD.</p>"
+        },
+        gemini: {
+            tag: "LARGE LANGUAGE MODELS",
+            title: "Google Gemini",
+            content: "<p>Validação de fluxos conversacionais, engenharia de prompts para criação de casos de teste e análise estrutural de respostas de IA.</p>"
+        },
+        openai: {
+            tag: "ECOSSISTEMA DE IA GENERATIVA",
+            title: "OpenAI APIs",
+            content: "<p>Testes de confiabilidade, prevenção de alucinações e homologação de assistentes corporativos integrados a dados críticos.</p>"
+        },
+        azure: {
+            tag: "GESTÃO DE CICLO DE VIDA & CI/CD",
+            title: "Azure DevOps",
+            content: "<p>Gerenciamento de Test Plans, abertura e rastreabilidade de bugs, e execução automatizada de pipelines de qualidade.</p>"
+        },
+        github: {
+            tag: "CONTROLE DE VERSÃO & ACTIONS",
+            title: "GitHub",
+            content: "<p>Versionamento de repositórios de automação, revisão de Pull Requests e configuração de workflows de testes em GitHub Actions.</p>"
+        },
+        jira: {
+            tag: "GESTÃO ÁGIL & DEFEITOS",
+            title: "Atlassian Jira",
+            content: "<p>Rastreabilidade ponta a ponta de histórias de usuário, triagem de defeitos, métricas de qualidade e ritos Scrum/Kanban.</p>"
+        },
+        testlink: {
+            tag: "GESTÃO DE CASOS DE TESTE",
+            title: "TestLink",
+            content: "<p>Modelagem estruturada de cadernos de teste, controle de versões de casos de teste e relatórios de cobertura de requisitos.</p>"
+        },
+        cicd: {
+            tag: "QUALIDADE CONTÍNUA",
+            title: "Pipelines CI/CD",
+            content: "<p>Integração de testes automatizados diretamente na esteira de deploy para bloqueio preventivo de regressões em produção.</p>"
         }
     };
 
@@ -283,6 +368,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
     langSelect.addEventListener('change', (e) => {
         setLanguage(e.target.value);
+    });
+
+    // Interatividade nas Tech Tags (Hover & Click Animations + Abre Modal da Tech)
+    techTags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            tag.classList.add('clicked');
+            const techKey = tag.getAttribute('data-tech');
+            const data = techDetails[techKey];
+
+            setTimeout(() => {
+                tag.classList.remove('clicked');
+                if (data) {
+                    modalCompanyTag.textContent = data.tag;
+                    modalCompanyTitle.textContent = data.title;
+                    modalCompanyContent.innerHTML = data.content;
+                    expModal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }, 180);
+        });
     });
 
     // Abrir Modal de Experiência
