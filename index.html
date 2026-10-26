@@ -1,468 +1,340 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RIAN SANTOS // KIROSHI-RESOLVER OS (CYBERPUNK x FAR CRY)</title>
+    <title>Rian Barbosa | Quality Assurance Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body data-theme="cyberpunk">
+<body>
 
-    <!-- OVERLAY TÁTICO & SCANLINES -->
-    <div class="tactical-overlay" aria-hidden="true"></div>
-
-    <!-- NOTIFICAÇÃO TOAST -->
-    <div id="tacticalToast" class="tactical-toast" role="status" aria-live="polite">
-        <span class="diamond-icon">◆</span> <span id="toastMessage">TRANSMISSÃO ESTABELECIDA</span>
-    </div>
-
-    <!-- ================= HUD SUPERIOR HÍBRIDO (KIROSHI x RESOLVER) ================= -->
-    <header class="fc-hud-wrapper">
-        <div class="fc-hud-container">
+    <!-- NAVBAR / HEADER FIXO MINIMALISTA -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Rian Barbosa<span class="dot">.</span></a>
             
-            <!-- BARRA DE CONTROLE TÁTICO & ALTERNADOR DE TEMA -->
-            <div class="control-deck-bar">
-                <div class="deck-group">
-                    <span class="deck-label">[SYS.HUD]</span>
-                    <button type="button" id="themeToggleBtn" class="deck-btn cyberpunk-active">
-                        ⚡ MODO: <span id="themeName">NIGHT CITY (CYBERPUNK)</span>
-                    </button>
-                    <button type="button" id="audioToggleBtn" class="deck-btn">
-                        🔊 ÁUDIO TÁTICO: <span id="audioStatus">OFF</span>
-                    </button>
-                </div>
-                <div class="deck-group system-clock">
-                    <span class="pulse-dot"></span>
-                    <span id="systemClock">2026.10.25 // 20:35:00</span>
-                </div>
-            </div>
+            <div class="nav-right">
+                <nav class="nav-links">
+                    <a href="#about" class="nav-glitch" data-i18n="nav_about" data-text="Sobre">Sobre</a>
+                    <a href="#skills" class="nav-glitch" data-i18n="nav_skills" data-text="Skills">Skills</a>
+                    <a href="#experience" class="nav-glitch" data-i18n="nav_experience" data-text="Experiência">Experiência</a>
+                    <a href="#education" class="nav-glitch" data-i18n="nav_education" data-text="Formação">Formação</a>
+                    <a href="#hobbies" class="nav-glitch" data-i18n="nav_hobbies" data-text="Hobbies">Hobbies</a>
+                    <a href="#contact" class="nav-cta nav-glitch" data-i18n="nav_contact" data-text="Contato">Contato</a>
+                </nav>
 
-            <!-- BÚSSOLA REATIVA A MOUSE & SCROLL -->
-            <div class="compass-bar" aria-hidden="true">
-                <div class="compass-center-marker">▼</div>
-                <div id="compassTrack" class="compass-track">
-                    <span>NW</span><span>|</span><span>330</span><span>|</span>
-                    <span class="cardinal">N</span><span>|</span><span>030</span><span>|</span>
-                    <span>NE</span><span>|</span><span>060</span><span>|</span>
-                    <span class="cardinal">E</span><span>|</span><span>120</span><span>|</span>
-                    <span>SE</span><span>|</span><span>150</span><span>|</span>
-                    <span class="cardinal">S</span><span>|</span><span>210</span><span>|</span>
-                    <span>SW</span><span>|</span><span>240</span><span>|</span>
-                    <span class="cardinal">W</span><span>|</span><span>300</span><span>|</span>
-                    <span>NW</span><span>|</span><span>330</span><span>|</span>
-                    <span class="cardinal">N</span><span>|</span><span>030</span><span>|</span>
+                <!-- SELETOR DE IDIOMAS -->
+                <div class="lang-switcher" role="group" aria-label="Seletor de idioma">
+                    <button type="button" class="lang-btn active" data-lang="pt">PT</button>
+                    <button type="button" class="lang-btn" data-lang="en">EN</button>
+                    <button type="button" class="lang-btn" data-lang="es">ES</button>
                 </div>
             </div>
-
-            <!-- PAINEL PRINCIPAL DE IDENTIFICAÇÃO -->
-            <div class="hud-main-bar">
-                <div class="operator-info">
-                    <div class="faction-tag">
-                        <span class="cyber-bracket">[</span> NETRUNNER &amp; BUG HUNTER <span class="cyber-bracket">]</span> // DESDE 2015
-                    </div>
-                    <h1 class="char-name">RIAN BARBOSA DOS SANTOS</h1>
-                    <p class="char-class">ESPECIALISTA TÁTICO: ANALISTA DE QA PLENO &amp; ENGENHEIRO DE AUTOMAÇÃO</p>
-                </div>
-
-                <div class="rank-badge" title="Mais de 10 anos neutralizando bugs em produção">
-                    <div class="rank-chevron">▲</div>
-                    <div class="rank-details">
-                        <span class="rank-label">NETRUNNER RANK</span>
-                        <span class="rank-number">VETERANO</span>
-                        <span class="rank-sub">ATIVO NO SISTEMA</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- COMUNICAÇÃO VIA RÁDIO -->
-            <div class="hud-comms-bar">
-                <button type="button" class="comm-btn comm-phone" data-copy="99142-5840" title="Copiar Telefone">
-                    <span class="comm-tag">[FREQ. RÁDIO / TEL]</span>
-                    <span class="comm-val">99142-5840</span>
-                    <span class="comm-action">COPIAR ⎘</span>
-                </button>
-
-                <button type="button" class="comm-btn comm-email" data-copy="rianbarbosa35@gmail.com" title="Copiar E-mail">
-                    <span class="comm-tag">[TRANSMISSÃO / E-MAIL]</span>
-                    <span class="comm-val">rianbarbosa35@gmail.com</span>
-                    <span class="comm-action">COPIAR ⎘</span>
-                </button>
-
-                <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer" class="comm-btn comm-linkedin">
-                    <span class="comm-tag">[REDE EXTERNA]</span>
-                    <span class="comm-val">LINKEDIN // RIANBSANTOS</span>
-                    <span class="comm-action">ACESSAR ↗</span>
-                </a>
-            </div>
-
-            <!-- BARRA DE RECONHECIMENTO DE TERRITÓRIO -->
-            <div class="territory-progress">
-                <span class="tp-label">PROGRESSO DE SINCRONIZAÇÃO</span>
-                <div class="tp-bar-bg">
-                    <div id="xpBar" class="tp-bar-fill"></div>
-                </div>
-                <span id="xpPercentage" class="tp-counter">0%</span>
-            </div>
-
         </div>
     </header>
 
-    <!-- ================= CONTEÚDO PRINCIPAL / MAPA DE DADOS ================= -->
-    <div class="fc-container">
-        
-        <main class="tactical-grid">
-            
-            <!-- COLUNA ESQUERDA: RADAR BIOMÉTRICO KIROSHI & SKILLS -->
-            <div class="tactical-column">
-                
-                <!-- RADAR BIOMÉTRICO (SVG STATS) -->
-                <section class="fc-section bio-radar-section">
-                    <div class="section-header">
-                        <span class="waypoint-diamond">◆</span>
-                        <h2>[DIAGNÓSTICO DE CAPACIDADES KIROSHI]</h2>
-                    </div>
-                    <div class="radar-container">
-                        <svg class="radar-svg" viewBox="0 0 200 200">
-                            <!-- Teias de aranha do radar -->
-                            <polygon points="100,20 176,75 147,162 53,162 24,75" class="radar-web" />
-                            <polygon points="100,50 138,77 123,121 77,121 62,77" class="radar-web" />
-                            <line x1="100" y1="100" x2="100" y2="20" class="radar-line" />
-                            <line x1="100" y1="100" x2="176" y2="75" class="radar-line" />
-                            <line x1="100" y1="100" x2="147" y2="162" class="radar-line" />
-                            <line x1="100" y1="100" x2="53" y2="162" class="radar-line" />
-                            <line x1="100" y1="100" x2="24" y2="75" class="radar-line" />
-                            <!-- Polígono preenchido com dados reais de QA -->
-                            <polygon points="100,24 165,72 138,150 63,150 32,78" class="radar-polygon" />
-                        </svg>
-                        <div class="radar-legend">
-                            <div class="radar-stat"><span>AUTOMAÇÃO E2E:</span> <strong>96%</strong></div>
-                            <div class="radar-stat"><span>API &amp; SQL:</span> <strong>94%</strong></div>
-                            <div class="radar-stat"><span>IA &amp; LLMS:</span> <strong>92%</strong></div>
-                            <div class="radar-stat"><span>DEVOPS &amp; SEC:</span> <strong>90%</strong></div>
-                            <div class="radar-stat"><span>GESTÃO TMMi:</span> <strong>98%</strong></div>
-                        </div>
-                    </div>
-                </section>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-container">
 
-                <!-- ÁRVORE DE HABILIDADES (PERKS) -->
-                <section class="fc-section">
-                    <div class="section-header">
-                        <span class="waypoint-diamond">◆</span>
-                        <h2>[ÁRVORE DE SOBREVIVÊNCIA // PERKS]</h2>
-                    </div>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="hero-badge">
+                <span class="status-dot"></span>
+                <span data-i18n="hero_badge">Disponível para novos desafios</span>
+            </div>
+            <h1 class="hero-title" data-i18n="hero_title">Quality Assurance Engineer & Bug Hunter</h1>
+            <p class="hero-subtitle" data-i18n="hero_subtitle">
+                Especialista em automação de testes end-to-end, validação de APIs e qualidade de software com mais de 10 anos de experiência em grandes corporações.
+            </p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Entrar em Contato</a>
+                <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn ↗</a>
+            </div>
+        </section>
 
-                    <div class="skills-grid">
-                        
-                        <button type="button" class="fc-card skill-card perk-assault" data-popup="pop-automation">
-                            <div class="skill-emblem">
-                                <span>🎯</span>
-                            </div>
-                            <div class="card-content">
-                                <span class="perk-category">LINHA DE FRENTE // TIER 1</span>
-                                <h3>AUTOMAÇÃO DE TESTES</h3>
-                                <p>Cypress, Robot Framework, Selenium e Playwright.</p>
-                            </div>
-                            <span class="inspect-icon" aria-hidden="true">+</span>
-                        </button>
+        <!-- SOBRE / METRICS -->
+        <section id="about" class="section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">10+</span>
+                    <span class="stat-label" data-i18n="stat_exp">Anos de Experiência</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2015</span>
+                    <span class="stat-label" data-i18n="stat_start">Início na Carreira Tech</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label" data-i18n="stat_focus">Foco em Qualidade & Regressão</span>
+                </div>
+            </div>
+        </section>
 
-                        <button type="button" class="fc-card skill-card perk-intel" data-popup="pop-api">
-                            <div class="skill-emblem">
-                                <span>📡</span>
-                            </div>
-                            <div class="card-content">
-                                <span class="perk-category">INTELIGÊNCIA DE DADOS // TIER 2</span>
-                                <h3>API &amp; DATA</h3>
-                                <p>Postman, Swagger, SQL (SQL Server, Oracle e PL/SQL).</p>
-                            </div>
-                            <span class="inspect-icon" aria-hidden="true">+</span>
-                        </button>
-
-                        <button type="button" class="fc-card skill-card perk-special" data-popup="pop-ai">
-                            <div class="skill-emblem">
-                                <span>⚡</span>
-                            </div>
-                            <div class="card-content">
-                                <span class="perk-category">TECNOLOGIA EXPERIMENTAL // TIER 3</span>
-                                <h3>INTELIGÊNCIA ARTIFICIAL</h3>
-                                <p>Copilot, Gemini e OpenAI.</p>
-                            </div>
-                            <span class="inspect-icon" aria-hidden="true">+</span>
-                        </button>
-
-                        <button type="button" class="fc-card skill-card perk-defense" data-popup="pop-devops">
-                            <div class="skill-emblem">
-                                <span>🛡️</span>
-                            </div>
-                            <div class="card-content">
-                                <span class="perk-category">FORTIFICAÇÃO &amp; DEFESA // TIER 4</span>
-                                <h3>CYBER SECURITY &amp; DEVOPS</h3>
-                                <p>Azure DevOps, GitHub, CI/CD pipelines e Gestão de Defeitos.</p>
-                            </div>
-                            <span class="inspect-icon" aria-hidden="true">+</span>
-                        </button>
-
-                    </div>
-                </section>
-                    
-                <!-- ARSENAL & CREDENCIAIS -->
-                <section class="fc-section">
-                    <div class="section-header">
-                        <span class="waypoint-diamond">◆</span>
-                        <h2>[ARSENAL &amp; CREDENCIAIS DE CAMPO]</h2>
-                    </div>
-
-                    <div class="loadout-list">
-                        <div class="loadout-item rarity-gold">
-                            <div class="loadout-header">
-                                <span class="item-type">★ EQUIPAMENTO SUPREMO (PÓS-GRADUAÇÃO)</span>
-                                <span class="item-status status-active">EM FORJA</span>
-                            </div>
-                            <h3>Qualidade e Teste de Software</h3>
-                            <p>UniCesumar (Em andamento)</p>
-                        </div>
-
-                        <div class="loadout-item rarity-red">
-                            <div class="loadout-header">
-                                <span class="item-type">◆ CREDENCIAL DE COMANDO (GRADUAÇÃO)</span>
-                                <span class="item-status">CONCLUÍDO</span>
-                            </div>
-                            <h3>Análise e Desenvolvimento de Sistemas</h3>
-                            <p>Estácio</p>
-                        </div>
-
-                        <div class="loadout-item rarity-olive">
-                            <div class="loadout-header">
-                                <span class="item-type">▲ ESPECIALIZAÇÃO TÁTICA (CERTIFICADO)</span>
-                                <span class="item-status">CONCLUÍDO</span>
-                            </div>
-                            <h3>Curso Completo Cyber Security</h3>
-                            <p>Segurança da Informação &amp; DevOps Contínuo</p>
-                        </div>
-                    </div>
-                </section>
-
+        <!-- SKILLS / TECH STACK -->
+        <section id="skills" class="section">
+            <div class="section-header">
+                <h2 data-i18n="skills_title">Stack Tecnológica</h2>
+                <p data-i18n="skills_subtitle">Ferramentas e tecnologias que utilizo para garantir excelência em software.</p>
             </div>
 
-            <!-- COLUNA DIREITA: MINIGAME BREACH PROTOCOL & OPERAÇÕES -->
-            <div class="tactical-column">
-                
-                <!-- PAINEL DE BREACH PROTOCOL (HACKEO CYBERPUNK) -->
-                <section class="fc-section breach-section">
-                    <div class="section-header">
-                        <span class="waypoint-diamond">◆</span>
-                        <h2>[MINIGAME: BREACH PROTOCOL QA]</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3 data-i18n="skill_cat_1">Automação & E2E</h3>
+                    <div class="tag-cloud">
+                        <span>Cypress</span>
+                        <span>Robot Framework</span>
+                        <span>Selenium</span>
+                        <span>Playwright</span>
                     </div>
-                    <div class="breach-box">
-                        <p class="breach-desc">Insira a sequência correta de códigos hexadecimais para desbloquear a Otimização de Bugs:</p>
-                        <div class="matrix-grid" id="matrixGrid">
-                            <span>1C</span><span>BD</span><span>55</span><span>E9</span>
-                            <span>7A</span><span>1C</span><span>BD</span><span>55</span>
-                            <span>E9</span><span>7A</span><span>1C</span><span>BD</span>
-                        </div>
-                        <div class="ram-buffer-area">
-                            <span>BUFFER DE RAM:</span>
-                            <div id="ramSlots" class="ram-slots">
-                                <span class="ram-slot">--</span>
-                                <span class="ram-slot">--</span>
-                                <span class="ram-slot">--</span>
-                            </div>
-                            <button type="button" id="breachBtn" class="breach-exec-btn">EXECUTAR HACK</button>
-                        </div>
-                        <p id="breachResult" class="breach-status">// STATUS: AGUARDANDO ENTRADA</p>
+                </div>
+
+                <div class="skill-category">
+                    <h3 data-i18n="skill_cat_2">APIs & Banco de Dados</h3>
+                    <div class="tag-cloud">
+                        <span>Postman</span>
+                        <span>Swagger</span>
+                        <span>SQL Server</span>
+                        <span>Oracle PL/SQL</span>
                     </div>
-                </section>
+                </div>
 
-                <!-- POSTOS AVANÇADOS (EXPERIÊNCIA) -->
-                <section class="fc-section">
-                    <div class="section-header">
-                        <span class="waypoint-diamond">◆</span>
-                        <h2>[OPERAÇÕES &amp; POSTOS AVANÇADOS]</h2>
+                <div class="skill-category">
+                    <h3 data-i18n="skill_cat_3">Inteligência Artificial</h3>
+                    <div class="tag-cloud">
+                        <span>GitHub Copilot</span>
+                        <span>Google Gemini</span>
+                        <span>OpenAI APIs</span>
                     </div>
+                </div>
 
-                    <div class="outpost-timeline">
-
-                        <button type="button" class="fc-card outpost-card active-outpost" data-popup="pop-deloitte">
-                            <div class="outpost-status-bar">
-                                <span class="outpost-badge"><span class="blink-dot">●</span> OPERAÇÃO ATIVA</span>
-                                <span class="outpost-coords">NOV 2024 - PRESENTE</span>
-                            </div>
-                            <h3>Deloitte // Analista de QA Pleno</h3>
-                            <p class="outpost-brief">Validação de IA (ChatPetrobras), CNPJ Alfanumérico e segurança financeira (Porto Seguro).</p>
-                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
-                        </button>
-
-                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-ecs">
-                            <div class="outpost-status-bar">
-                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
-                                <span class="outpost-coords">SET 2022 - JUN 2024</span>
-                            </div>
-                            <h3>ECS Inovação // Analista de QA Pleno</h3>
-                            <p class="outpost-brief">Automação Cypress (+20% cobertura), validação de APIs/SQL e regras críticas do ecossistema Farma.</p>
-                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
-                        </button>
-
-                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-indra">
-                            <div class="outpost-status-bar">
-                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
-                                <span class="outpost-coords">SET 2021 - SET 2022</span>
-                            </div>
-                            <h3>Indra // Analista de QA Pleno</h3>
-                            <p class="outpost-brief">Incremento de 40% em testes automatizados (Cypress/Robot), métricas TMMi e gestão Jira/Azure.</p>
-                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
-                        </button>
-
-                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-wati">
-                            <div class="outpost-status-bar">
-                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
-                                <span class="outpost-coords">JUL 2020 - SET 2021</span>
-                            </div>
-                            <h3>WATI Consultoria // Analista de QA</h3>
-                            <p class="outpost-brief">Sistemas críticos de Urgência Hospitalar (PEP/SoulMV), regressão Selenium/Robot e SQL Developer.</p>
-                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
-                        </button>
-
-                        <button type="button" class="fc-card outpost-card liberated-outpost" data-popup="pop-accenture">
-                            <div class="outpost-status-bar">
-                                <span class="outpost-badge">✓ TERRITÓRIO CONQUISTADO</span>
-                                <span class="outpost-coords">JUN 2015 - JUL 2020</span>
-                            </div>
-                            <h3>Accenture Brasil // Analista de QA</h3>
-                            <p class="outpost-brief">5 anos em operações massivas de Telecom (Oi), scripts Oracle PL/SQL, ALM e Azure DevOps.</p>
-                            <span class="click-prompt">[ INSPECIONAR RELATÓRIO DE INTELIGÊNCIA ▸ ]</span>
-                        </button>
-
+                <div class="skill-category">
+                    <h3 data-i18n="skill_cat_4">DevOps & Gestão</h3>
+                    <div class="tag-cloud">
+                        <span>Azure DevOps</span>
+                        <span>GitHub</span>
+                        <span>Jira</span>
+                        <span>TestLink</span>
+                        <span>CI/CD</span>
                     </div>
-                </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIÊNCIA / TIMELINE COM POPUP -->
+        <section id="experience" class="section">
+            <div class="section-header">
+                <h2 data-i18n="exp_title">Experiência Profissional</h2>
+                <p data-i18n="exp_subtitle">Trajetória em empresas líderes de mercado e consultorias. Clique em uma empresa para ver os detalhes.</p>
             </div>
 
-        </main>
-        
-        <!-- RODAPÉ DO TERMINAL -->
-        <footer class="fc-footer">
-            <div class="footer-line"></div>
-            <p>KIROSHI-RESOLVER OS // PROPRIEDADE DE <strong>RIAN B. SANTOS</strong> // CONECTE-SE VIA <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer">LINKEDIN</a></p>
-        </footer>
-    </div>
+            <div class="timeline">
 
-    <!-- ================= MODAIS DE INTELIGÊNCIA ================= -->
-    <div id="pop-automation" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-amber">HABILIDADE DE LINHA DE FRENTE // TIER 1</span>
-            <h2>AUTOMAÇÃO DE TESTES E ENGENHARIA</h2>
-            <hr class="fc-divider">
-            <p>Domínio avançado em arquiteturas de automação robustas focadas em Web, Mobile e Regressão de larga escala.</p>
-            <div class="intel-box"><strong>ARSENAL DE FRAMEWORKS:</strong> Cypress, Robot Framework, Selenium, Playwright.</div>
+                <div class="timeline-item interactive-exp" data-exp="deloitte" tabindex="0" role="button">
+                    <div class="timeline-header">
+                        <span class="timeline-role" data-i18n="exp_deloitte_role">Analista de QA Pleno</span>
+                        <span class="timeline-company">Deloitte</span>
+                    </div>
+                    <span class="timeline-date" data-i18n="exp_deloitte_date">Nov 2024 - Presente</span>
+                    <p class="timeline-desc" data-i18n="exp_deloitte_short">
+                        Validação de soluções de IA conversacional (ChatPetrobras), CNPJ Alfanumérico e segurança financeira na Porto Seguro.
+                    </p>
+                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                </div>
+
+                <div class="timeline-item interactive-exp" data-exp="ecs" tabindex="0" role="button">
+                    <div class="timeline-header">
+                        <span class="timeline-role" data-i18n="exp_ecs_role">Analista de QA Pleno</span>
+                        <span class="timeline-company">ECS Inovação</span>
+                    </div>
+                    <span class="timeline-date" data-i18n="exp_ecs_date">Set 2022 - Jun 2024</span>
+                    <p class="timeline-desc" data-i18n="exp_ecs_short">
+                        Ganho de 20% em cobertura de testes via automação em Cypress, validação de APIs/SQL e homologação no ecossistema Farma.
+                    </p>
+                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                </div>
+
+                <div class="timeline-item interactive-exp" data-exp="indra" tabindex="0" role="button">
+                    <div class="timeline-header">
+                        <span class="timeline-role" data-i18n="exp_indra_role">Analista de QA Pleno</span>
+                        <span class="timeline-company">Indra</span>
+                    </div>
+                    <span class="timeline-date" data-i18n="exp_indra_date">Set 2021 - Set 2022</span>
+                    <p class="timeline-desc" data-i18n="exp_indra_short">
+                        Aumento de 40% no volume de testes automatizados com Cypress e Robot Framework, métricas TMMi e gestão Jira/Azure.
+                    </p>
+                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                </div>
+
+                <div class="timeline-item interactive-exp" data-exp="wati" tabindex="0" role="button">
+                    <div class="timeline-header">
+                        <span class="timeline-role" data-i18n="exp_wati_role">Analista de QA</span>
+                        <span class="timeline-company">WATI Consultoria</span>
+                    </div>
+                    <span class="timeline-date" data-i18n="exp_wati_date">Jul 2020 - Set 2021</span>
+                    <p class="timeline-desc" data-i18n="exp_wati_short">
+                        Execução em sistemas críticos de Urgência Hospitalar (PEP/SoulMV), regressão com Selenium e validação SQL Developer.
+                    </p>
+                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                </div>
+
+                <div class="timeline-item interactive-exp" data-exp="accenture" tabindex="0" role="button">
+                    <div class="timeline-header">
+                        <span class="timeline-role" data-i18n="exp_accenture_role">Analista de QA</span>
+                        <span class="timeline-company">Accenture Brasil</span>
+                    </div>
+                    <span class="timeline-date" data-i18n="exp_accenture_date">Jun 2015 - Jul 2020</span>
+                    <p class="timeline-desc" data-i18n="exp_accenture_short">
+                        5 anos dedicados à qualidade em produtos web/mobile, scripts Oracle PL/SQL e homologação massiva em telecomunicações (Oi).
+                    </p>
+                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FORMAÇÃO & CERTIFICAÇÕES (COM EFEITO DE FOLHA DE PAPEL ABRINDO) -->
+        <section id="education" class="section">
+            <div class="section-header">
+                <h2 data-i18n="edu_title">Formação & Certificações</h2>
+                <p data-i18n="edu_subtitle">Clique em qualquer item abaixo para abrir o documento detalhado.</p>
+            </div>
+            <div class="education-grid">
+                
+                <div class="edu-card" tabindex="0" role="button" aria-expanded="false">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="edu_1_type">Pós-Graduação (Em andamento)</span>
+                        <span class="paper-toggle-icon">📄</span>
+                    </div>
+                    <h3 data-i18n="edu_1_title">Qualidade e Teste de Software</h3>
+                    <p>UniCesumar</p>
+                    <div class="paper-sheet">
+                        <div class="paper-sheet-inner">
+                            <div class="paper-lines">
+                                <span class="paper-stamp" data-i18n="edu_stamp_progress">DOCUMENTO ACADÊMICO // EM CURSO</span>
+                                <p data-i18n="edu_1_detail">Especialização focada em arquitetura de testes automatizados, engenharia de qualidade contínua, métricas ágeis, gestão de defeitos e validação avançada de sistemas críticos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-card" tabindex="0" role="button" aria-expanded="false">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="edu_2_type">Graduação</span>
+                        <span class="paper-toggle-icon">📄</span>
+                    </div>
+                    <h3 data-i18n="edu_2_title">Análise e Desenvolvimento de Sistemas</h3>
+                    <p>Estácio</p>
+                    <div class="paper-sheet">
+                        <div class="paper-sheet-inner">
+                            <div class="paper-lines">
+                                <span class="paper-stamp" data-i18n="edu_stamp_done">DIPLOMA REGISTRADO // CONCLUÍDO</span>
+                                <p data-i18n="edu_2_detail">Formação superior abrangendo engenharia de software, arquitetura de banco de dados relacionais, algoritmos, desenvolvimento web e ciclo de vida completo de aplicações.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-card" tabindex="0" role="button" aria-expanded="false">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="edu_3_type">Certificação</span>
+                        <span class="paper-toggle-icon">📄</span>
+                    </div>
+                    <h3 data-i18n="edu_3_title">Cyber Security & DevOps</h3>
+                    <p data-i18n="edu_3_inst">Segurança da Informação Contínua</p>
+                    <div class="paper-sheet">
+                        <div class="paper-sheet-inner">
+                            <div class="paper-lines">
+                                <span class="paper-stamp" data-i18n="edu_stamp_cert">CERTIFICADO VERIFICADO // CONCLUÍDO</span>
+                                <p data-i18n="edu_3_detail">Práticas de DevSecOps, análise de vulnerabilidades em APIs, proteção de dados sensíveis, criptografia e integração segura em esteiras CI/CD (GitHub e Azure DevOps).</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- HOBBIES & INTERESSES -->
+        <section id="hobbies" class="section">
+            <div class="section-header">
+                <h2 data-i18n="hobbies_title">Hobbies & Interesses</h2>
+                <p data-i18n="hobbies_subtitle">O que me inspira e movimenta fora das linhas de código e dos planos de teste.</p>
+            </div>
+
+            <div class="hobbies-grid">
+                <div class="hobby-card">
+                    <span class="hobby-icon">🎸</span>
+                    <h3 data-i18n="hobby_1_title">Música & Violão</h3>
+                    <p data-i18n="hobby_1_desc">Tocar violão, cantar e criar arranjos musicais ao vivo com setups de loop e camadas sonoras.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <span class="hobby-icon">🎮</span>
+                    <h3 data-i18n="hobby_2_title">PC Gaming & Sci-Fi</h3>
+                    <p data-i18n="hobby_2_desc">Explorar mundos imersivos, jogos táticos e narrativas cyberpunk nas horas vagas na Steam.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <span class="hobby-icon">🏖️</span>
+                    <h3 data-i18n="hobby_3_title">Praia & Corrida</h3>
+                    <p data-i18n="hobby_3_desc">Aproveitar o litoral, atividades ao ar livre no mar e participar de corridas de rua.</p>
+                </div>
+
+                <div class="hobby-card">
+                    <span class="hobby-icon">🍽️</span>
+                    <h3 data-i18n="hobby_4_title">Gastronomia & Cafés</h3>
+                    <p data-i18n="hobby_4_desc">Conhecer novos restaurantes, apreciar bons pratos e descobrir cafeterias especiais.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTATO -->
+        <section id="contact" class="section contact-section">
+            <div class="contact-box">
+                <h2 data-i18n="contact_title">Vamos construir software com qualidade?</h2>
+                <p data-i18n="contact_subtitle">Entre em contato direto para oportunidades, projetos ou conexões profissionais.</p>
+                
+                <div class="contact-actions">
+                    <button type="button" class="btn btn-primary" data-copy="rianbarbosa35@gmail.com" data-i18n="btn_copy_email">
+                        Copiar E-mail ⎘
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-copy="99142-5840" data-i18n="btn_copy_phone">
+                        Copiar Telefone ⎘
+                    </button>
+                    <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                        LinkedIn ↗
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- MODAL DE EXPERIÊNCIA PROFISSIONAL -->
+    <div id="expModalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="modal-card">
+            <button type="button" id="closeModalBtn" class="modal-close" aria-label="Fechar">&times;</button>
+            <span id="modalCompanyBadge" class="modal-badge">Empresa</span>
+            <h2 id="modalRoleTitle" class="modal-title">Cargo</h2>
+            <span id="modalDate" class="modal-date">Período</span>
+            <hr class="modal-divider">
+            <ul id="modalList" class="modal-list"></ul>
         </div>
     </div>
 
-    <div id="pop-api" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-amber">INTELIGÊNCIA E RECONHECIMENTO // TIER 2</span>
-            <h2>INTEGRAÇÕES E MANIPULAÇÃO DE DADOS</h2>
-            <hr class="fc-divider">
-            <p>Validação rigorosa de backend com testes de integração fim-a-fim e análise estruturada de bancos de dados.</p>
-            <div class="intel-box"><strong>APIs:</strong> Consumo e validação via Postman e documentação Swagger.</div>
-            <div class="intel-box"><strong>DATABASE:</strong> Consultas complexas e manipulação via MS SQL Server e Oracle PL/SQL.</div>
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p data-i18n="footer_rights">&copy; 2026 Rian Barbosa Dos Santos. Todos os direitos reservados.</p>
         </div>
-    </div>
+    </footer>
 
-    <div id="pop-ai" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-red">ARMAMENTO EXPERIMENTAL // TIER 3</span>
-            <h2>EMERGING TECH &amp; INTELIGÊNCIA ARTIFICIAL</h2>
-            <hr class="fc-divider">
-            <p>Especialista em validação estrutural de modelos de linguagem e soluções que empregam Inteligência Artificial.</p>
-            <div class="intel-box"><strong>TECNOLOGIAS:</strong> Copilot, Google Gemini, OpenAI APIs.</div>
-            <div class="intel-box"><strong>ESPECIALIDADE:</strong> Validação de confiabilidade em IAs conversacionais e ferramentas inteligentes de refatoração de código.</div>
-        </div>
-    </div>
-
-    <div id="pop-devops" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-green">SUPORTE TÁTICO &amp; DEFESA // TIER 4</span>
-            <h2>CYBER SECURITY &amp; OPERAÇÕES AGILE</h2>
-            <hr class="fc-divider">
-            <p>Implementação de rotinas seguras e integração contínua para manutenção da integridade dos ambientes de teste.</p>
-            <div class="intel-box"><strong>FERRAMENTAS:</strong> Azure DevOps, GitHub, Jira, Dynatrace, TestLink.</div>
-            <div class="intel-box"><strong>PROCESSOS:</strong> Modelagem de cenários BDD, esteiras de CI/CD e auditoria de logs de segurança.</div>
-        </div>
-    </div>
-
-    <div id="pop-deloitte" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-red">● RELATÓRIO DA OPERAÇÃO ATIVA</span>
-            <h2>OPERAÇÃO: DELOITTE (QA PLENO)</h2>
-            <hr class="fc-divider">
-            <ul class="mission-objectives-full">
-                <li><strong>ChatPetrobras:</strong> Validação minuciosa de solução de IA conversacional baseada em LLM integrada a dados operacionais e fluxos internos da Petrobras.</li>
-                <li><strong>Adequação Federal:</strong> Homologação de ferramenta inteligente para análise e refatoração de código com foco nas normas do CNPJ Alfanumérico.</li>
-                <li><strong>Porto Seguro:</strong> Ajuste estrutural e garantia de segurança/criptografia de dados no fluxo de emissão de boletos corporativos.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="pop-ecs" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
-            <h2>OPERAÇÃO: ECS INOVAÇÃO (QA PLENO)</h2>
-            <hr class="fc-divider">
-            <ul class="mission-objectives-full">
-                <li><strong>Bônus de Automação:</strong> Ganho de 20% em novos cenários validados via scripts reutilizáveis em Cypress.</li>
-                <li><strong>Backend:</strong> Consumo integral de APIs (Postman/Swagger) combinados com consultas de consistência via Microsoft SQL Server.</li>
-                <li><strong>Ecossistema Farma:</strong> Homologação de regras críticas em fluxos de estoque, vendas online de medicamentos e laudos de clínicas laboratoriais.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="pop-indra" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
-            <h2>OPERAÇÃO: INDRA (QA PLENO)</h2>
-            <hr class="fc-divider">
-            <ul class="mission-objectives-full">
-                <li><strong>Eficiência Crítica:</strong> Incremento massivo de 40% no volume de testes validados por meio de automação com Cypress e Robot Framework.</li>
-                <li><strong>Métricas TMMi:</strong> Construção de relatórios estruturados baseados no modelo TMMi para suporte de melhoria contínua.</li>
-                <li><strong>Gerenciamento:</strong> Rastreabilidade ponta a ponta de defeitos em ecossistemas Jira, Azure DevOps e TestLink.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="pop-wati" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
-            <h2>OPERAÇÃO: WATI CONSULTORIA (QA)</h2>
-            <hr class="fc-divider">
-            <ul class="mission-objectives-full">
-                <li><strong>Fluxos Críticos:</strong> Elaboração e execução de cenários no TestLink focados nos sistemas de Urgência Hospitalar PEP e SoulMV.</li>
-                <li><strong>Automação Web:</strong> Criação de scripts dinâmicos de regressão cross-browser utilizando Selenium e Robot Framework.</li>
-                <li><strong>Bancos de Dados:</strong> Manipulação, extração de dados e validação de regras de backend utilizando SQL Developer.</li>
-            </ul>
-        </div>
-    </div>
-
-    <div id="pop-accenture" class="fc-modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="fc-modal">
-            <button type="button" class="close-btn" aria-label="Fechar dossiê">&times;</button>
-            <span class="modal-tag tag-green">✓ TERRITÓRIO PACIFICADO COM SUCESSO</span>
-            <h2>OPERAÇÃO: ACCENTURE BRASIL (QA)</h2>
-            <hr class="fc-divider">
-            <ul class="mission-objectives-full">
-                <li><strong>Consolidação:</strong> 5 anos dedicados à garantia de qualidade em produtos web e mobile utilizando ALM e Azure DevOps.</li>
-                <li><strong>Infraestrutura e Dados:</strong> Criação de scripts PL/SQL estruturados em bases Oracle para consistência de dados.</li>
-                <li><strong>Telecom (Oi):</strong> Homologação de ponta a ponta em fluxos massivos de TV por assinatura, internet fixa/móvel e planos telefônicos.</li>
-            </ul>
-        </div>
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="toast" role="status" aria-live="polite">
+        Copiado para a área de transferência!
     </div>
 
     <script src="script.js"></script>
