@@ -3,35 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rian Barbosa | Quality Assurance Engineer</title>
+    <title>Rian Santos_<span class="cursor-blink">_</span></title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- NAVBAR / HEADER FIXO MINIMALISTA -->
+    <!-- NAVBAR / HEADER FIXO MINIMALISTA COM SELETOR DE IDIOMA -->
     <header class="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">Rian Barbosa<span class="dot">.</span></a>
-            
-            <div class="nav-right">
-                <nav class="nav-links">
-                    <a href="#about" class="nav-glitch" data-i18n="nav_about" data-text="Sobre">Sobre</a>
-                    <a href="#skills" class="nav-glitch" data-i18n="nav_skills" data-text="Skills">Skills</a>
-                    <a href="#experience" class="nav-glitch" data-i18n="nav_experience" data-text="Experiência">Experiência</a>
-                    <a href="#education" class="nav-glitch" data-i18n="nav_education" data-text="Formação">Formação</a>
-                    <a href="#hobbies" class="nav-glitch" data-i18n="nav_hobbies" data-text="Hobbies">Hobbies</a>
-                    <a href="#contact" class="nav-cta nav-glitch" data-i18n="nav_contact" data-text="Contato">Contato</a>
-                </nav>
-
-                <!-- SELETOR DE IDIOMAS -->
-                <div class="lang-switcher" role="group" aria-label="Seletor de idioma">
-                    <button type="button" class="lang-btn active" data-lang="pt">PT</button>
-                    <button type="button" class="lang-btn" data-lang="en">EN</button>
-                    <button type="button" class="lang-btn" data-lang="es">ES</button>
-                </div>
+            <a href="#" class="nav-logo" data-i18n="logo">Rian Santos<span class="terminal-cursor">_</span></a>
+            <nav class="nav-links">
+                <a href="#about" data-i18n="nav_about" class="glitch-hover" data-text="Sobre">Sobre</a>
+                <a href="#skills" data-i18n="nav_skills" class="glitch-hover" data-text="Skills">Skills</a>
+                <a href="#experience" data-i18n="nav_experience" class="glitch-hover" data-text="Experiência">Experiência</a>
+                <a href="#hobbies" data-i18n="nav_hobbies" class="glitch-hover" data-text="Hobbies">Hobbies</a>
+                <a href="#education" data-i18n="nav_education" class="glitch-hover" data-text="Formação">Formação</a>
+                <a href="#contact" class="nav-cta" data-i18n="nav_contact">Contato</a>
+            </nav>
+            <div class="lang-selector">
+                <select id="langSelect" aria-label="Selecionar Idioma">
+                    <option value="pt" selected>PT-BR</option>
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                </select>
             </div>
         </div>
     </header>
@@ -42,15 +39,14 @@
         <!-- HERO SECTION -->
         <section class="hero-section">
             <div class="hero-badge">
-                <span class="status-dot"></span>
-                <span data-i18n="hero_badge">Disponível para novos desafios</span>
+                <span class="status-dot-blue"></span> <span data-i18n="hero_badge">Garantindo qualidade e caçando bugs</span>
             </div>
             <h1 class="hero-title" data-i18n="hero_title">Quality Assurance Engineer & Bug Hunter</h1>
             <p class="hero-subtitle" data-i18n="hero_subtitle">
                 Especialista em automação de testes end-to-end, validação de APIs e qualidade de software com mais de 10 anos de experiência em grandes corporações.
             </p>
             <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Entrar em Contato</a>
+                <a href="#contact" class="btn btn-primary" data-i18n="btn_contact">Entrar em Contato</a>
                 <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">LinkedIn ↗</a>
             </div>
         </section>
@@ -82,7 +78,7 @@
 
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3 data-i18n="skill_cat_1">Automação & E2E</h3>
+                    <h3 data-i18n="skill_cat1">Automação & E2E</h3>
                     <div class="tag-cloud">
                         <span>Cypress</span>
                         <span>Robot Framework</span>
@@ -92,7 +88,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3 data-i18n="skill_cat_2">APIs & Banco de Dados</h3>
+                    <h3 data-i18n="skill_cat2">APIs & Banco de Dados</h3>
                     <div class="tag-cloud">
                         <span>Postman</span>
                         <span>Swagger</span>
@@ -102,7 +98,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3 data-i18n="skill_cat_3">Inteligência Artificial</h3>
+                    <h3 data-i18n="skill_cat3">Inteligência Artificial</h3>
                     <div class="tag-cloud">
                         <span>GitHub Copilot</span>
                         <span>Google Gemini</span>
@@ -111,7 +107,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3 data-i18n="skill_cat_4">DevOps & Gestão</h3>
+                    <h3 data-i18n="skill_cat4">DevOps & Gestão</h3>
                     <div class="tag-cloud">
                         <span>Azure DevOps</span>
                         <span>GitHub</span>
@@ -123,170 +119,133 @@
             </div>
         </section>
 
-        <!-- EXPERIÊNCIA / TIMELINE COM POPUP -->
+        <!-- EXPERIÊNCIA / TIMELINE (COM POPUP POR EMPRESA) -->
         <section id="experience" class="section">
             <div class="section-header">
                 <h2 data-i18n="exp_title">Experiência Profissional</h2>
-                <p data-i18n="exp_subtitle">Trajetória em empresas líderes de mercado e consultorias. Clique em uma empresa para ver os detalhes.</p>
+                <p data-i18n="exp_subtitle">Clique em uma empresa para inspecionar o dossiê da operação.</p>
             </div>
 
             <div class="timeline">
 
-                <div class="timeline-item interactive-exp" data-exp="deloitte" tabindex="0" role="button">
+                <div class="timeline-item interactive-exp" data-company="deloitte">
                     <div class="timeline-header">
-                        <span class="timeline-role" data-i18n="exp_deloitte_role">Analista de QA Pleno</span>
+                        <span class="timeline-role">Analista de QA Pleno</span>
                         <span class="timeline-company">Deloitte</span>
                     </div>
-                    <span class="timeline-date" data-i18n="exp_deloitte_date">Nov 2024 - Presente</span>
+                    <span class="timeline-date">Nov 2024 - Presente</span>
                     <p class="timeline-desc" data-i18n="exp_deloitte_short">
-                        Validação de soluções de IA conversacional (ChatPetrobras), CNPJ Alfanumérico e segurança financeira na Porto Seguro.
+                        Validação de soluções de IA conversacional (ChatPetrobras), homologação de ferramentas inteligentes para refatoração de código e segurança financeira.
                     </p>
-                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                    <span class="inspect-hint" data-i18n="inspect_hint">Ver Detalhes da Operação →</span>
                 </div>
 
-                <div class="timeline-item interactive-exp" data-exp="ecs" tabindex="0" role="button">
+                <div class="timeline-item interactive-exp" data-company="ecs">
                     <div class="timeline-header">
-                        <span class="timeline-role" data-i18n="exp_ecs_role">Analista de QA Pleno</span>
+                        <span class="timeline-role">Analista de QA Pleno</span>
                         <span class="timeline-company">ECS Inovação</span>
                     </div>
-                    <span class="timeline-date" data-i18n="exp_ecs_date">Set 2022 - Jun 2024</span>
+                    <span class="timeline-date">Set 2022 - Jun 2024</span>
                     <p class="timeline-desc" data-i18n="exp_ecs_short">
-                        Ganho de 20% em cobertura de testes via automação em Cypress, validação de APIs/SQL e homologação no ecossistema Farma.
+                        Ganho de 20% em cobertura de testes via automação em Cypress, consumo de APIs e ecossistema Farma.
                     </p>
-                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                    <span class="inspect-hint" data-i18n="inspect_hint">Ver Detalhes da Operação →</span>
                 </div>
 
-                <div class="timeline-item interactive-exp" data-exp="indra" tabindex="0" role="button">
+                <div class="timeline-item interactive-exp" data-company="indra">
                     <div class="timeline-header">
-                        <span class="timeline-role" data-i18n="exp_indra_role">Analista de QA Pleno</span>
+                        <span class="timeline-role">Analista de QA Pleno</span>
                         <span class="timeline-company">Indra</span>
                     </div>
-                    <span class="timeline-date" data-i18n="exp_indra_date">Set 2021 - Set 2022</span>
+                    <span class="timeline-date">Set 2021 - Set 2022</span>
                     <p class="timeline-desc" data-i18n="exp_indra_short">
-                        Aumento de 40% no volume de testes automatizados com Cypress e Robot Framework, métricas TMMi e gestão Jira/Azure.
+                        Aumento de 40% no volume de testes automatizados com Cypress e Robot Framework, aplicação de métricas TMMi.
                     </p>
-                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                    <span class="inspect-hint" data-i18n="inspect_hint">Ver Detalhes da Operação →</span>
                 </div>
 
-                <div class="timeline-item interactive-exp" data-exp="wati" tabindex="0" role="button">
+                <div class="timeline-item interactive-exp" data-company="wati">
                     <div class="timeline-header">
-                        <span class="timeline-role" data-i18n="exp_wati_role">Analista de QA</span>
+                        <span class="timeline-role">Analista de QA</span>
                         <span class="timeline-company">WATI Consultoria</span>
                     </div>
-                    <span class="timeline-date" data-i18n="exp_wati_date">Jul 2020 - Set 2021</span>
+                    <span class="timeline-date">Jul 2020 - Set 2021</span>
                     <p class="timeline-desc" data-i18n="exp_wati_short">
-                        Execução em sistemas críticos de Urgência Hospitalar (PEP/SoulMV), regressão com Selenium e validação SQL Developer.
+                        Execução em sistemas de Urgência Hospitalar (PEP/SoulMV), regressão cross-browser e SQL Developer.
                     </p>
-                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                    <span class="inspect-hint" data-i18n="inspect_hint">Ver Detalhes da Operação →</span>
                 </div>
 
-                <div class="timeline-item interactive-exp" data-exp="accenture" tabindex="0" role="button">
+                <div class="timeline-item interactive-exp" data-company="accenture">
                     <div class="timeline-header">
-                        <span class="timeline-role" data-i18n="exp_accenture_role">Analista de QA</span>
+                        <span class="timeline-role">Analista de QA</span>
                         <span class="timeline-company">Accenture Brasil</span>
                     </div>
-                    <span class="timeline-date" data-i18n="exp_accenture_date">Jun 2015 - Jul 2020</span>
+                    <span class="timeline-date">Jun 2015 - Jul 2020</span>
                     <p class="timeline-desc" data-i18n="exp_accenture_short">
-                        5 anos dedicados à qualidade em produtos web/mobile, scripts Oracle PL/SQL e homologação massiva em telecomunicações (Oi).
+                        5 anos dedicados à qualidade em produtos web/mobile, scripts Oracle PL/SQL e telecomunicações.
                     </p>
-                    <span class="exp-click-hint" data-i18n="exp_click_more">Ver detalhes da atuação ↗</span>
+                    <span class="inspect-hint" data-i18n="inspect_hint">Ver Detalhes da Operação →</span>
                 </div>
 
             </div>
         </section>
 
-        <!-- FORMAÇÃO & CERTIFICAÇÕES (COM EFEITO DE FOLHA DE PAPEL ABRINDO) -->
-        <section id="education" class="section">
-            <div class="section-header">
-                <h2 data-i18n="edu_title">Formação & Certificações</h2>
-                <p data-i18n="edu_subtitle">Clique em qualquer item abaixo para abrir o documento detalhado.</p>
-            </div>
-            <div class="education-grid">
-                
-                <div class="edu-card" tabindex="0" role="button" aria-expanded="false">
-                    <div class="edu-card-top">
-                        <span class="edu-type" data-i18n="edu_1_type">Pós-Graduação (Em andamento)</span>
-                        <span class="paper-toggle-icon">📄</span>
-                    </div>
-                    <h3 data-i18n="edu_1_title">Qualidade e Teste de Software</h3>
-                    <p>UniCesumar</p>
-                    <div class="paper-sheet">
-                        <div class="paper-sheet-inner">
-                            <div class="paper-lines">
-                                <span class="paper-stamp" data-i18n="edu_stamp_progress">DOCUMENTO ACADÊMICO // EM CURSO</span>
-                                <p data-i18n="edu_1_detail">Especialização focada em arquitetura de testes automatizados, engenharia de qualidade contínua, métricas ágeis, gestão de defeitos e validação avançada de sistemas críticos.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="edu-card" tabindex="0" role="button" aria-expanded="false">
-                    <div class="edu-card-top">
-                        <span class="edu-type" data-i18n="edu_2_type">Graduação</span>
-                        <span class="paper-toggle-icon">📄</span>
-                    </div>
-                    <h3 data-i18n="edu_2_title">Análise e Desenvolvimento de Sistemas</h3>
-                    <p>Estácio</p>
-                    <div class="paper-sheet">
-                        <div class="paper-sheet-inner">
-                            <div class="paper-lines">
-                                <span class="paper-stamp" data-i18n="edu_stamp_done">DIPLOMA REGISTRADO // CONCLUÍDO</span>
-                                <p data-i18n="edu_2_detail">Formação superior abrangendo engenharia de software, arquitetura de banco de dados relacionais, algoritmos, desenvolvimento web e ciclo de vida completo de aplicações.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="edu-card" tabindex="0" role="button" aria-expanded="false">
-                    <div class="edu-card-top">
-                        <span class="edu-type" data-i18n="edu_3_type">Certificação</span>
-                        <span class="paper-toggle-icon">📄</span>
-                    </div>
-                    <h3 data-i18n="edu_3_title">Cyber Security & DevOps</h3>
-                    <p data-i18n="edu_3_inst">Segurança da Informação Contínua</p>
-                    <div class="paper-sheet">
-                        <div class="paper-sheet-inner">
-                            <div class="paper-lines">
-                                <span class="paper-stamp" data-i18n="edu_stamp_cert">CERTIFICADO VERIFICADO // CONCLUÍDO</span>
-                                <p data-i18n="edu_3_detail">Práticas de DevSecOps, análise de vulnerabilidades em APIs, proteção de dados sensíveis, criptografia e integração segura em esteiras CI/CD (GitHub e Azure DevOps).</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- HOBBIES & INTERESSES -->
+        <!-- HOBBIES -->
         <section id="hobbies" class="section">
             <div class="section-header">
                 <h2 data-i18n="hobbies_title">Hobbies & Interesses</h2>
-                <p data-i18n="hobbies_subtitle">O que me inspira e movimenta fora das linhas de código e dos planos de teste.</p>
+                <p data-i18n="hobbies_subtitle">O que me mantém energizado fora das telas de teste e automação.</p>
             </div>
 
             <div class="hobbies-grid">
                 <div class="hobby-card">
-                    <span class="hobby-icon">🎸</span>
-                    <h3 data-i18n="hobby_1_title">Música & Violão</h3>
-                    <p data-i18n="hobby_1_desc">Tocar violão, cantar e criar arranjos musicais ao vivo com setups de loop e camadas sonoras.</p>
+                    <div class="hobby-icon">🎸</div>
+                    <h3 data-i18n="hobby1_title">Violão & Música ao Vivo</h3>
+                    <p data-i18n="hobby1_desc">Criação de arranjos musicais e experimentos com setups inspirados em Loop Sessions.</p>
                 </div>
-
                 <div class="hobby-card">
-                    <span class="hobby-icon">🎮</span>
-                    <h3 data-i18n="hobby_2_title">PC Gaming & Sci-Fi</h3>
-                    <p data-i18n="hobby_2_desc">Explorar mundos imersivos, jogos táticos e narrativas cyberpunk nas horas vagas na Steam.</p>
+                    <div class="hobby-icon">🎮</div>
+                    <h3 data-i18n="hobby2_title">Jogos de Aventura & RPG</h3>
+                    <p data-i18n="hobby2_desc">Exploração de mundos imersivos como Cyberpunk 2077, Far Cry e PUBG.</p>
                 </div>
-
                 <div class="hobby-card">
-                    <span class="hobby-icon">🏖️</span>
-                    <h3 data-i18n="hobby_3_title">Praia & Corrida</h3>
-                    <p data-i18n="hobby_3_desc">Aproveitar o litoral, atividades ao ar livre no mar e participar de corridas de rua.</p>
+                    <div class="hobby-icon">🌊</div>
+                    <h3 data-i18n="hobby3_title">Praia & Natureza</h3>
+                    <p data-i18n="hobby3_desc">Momentos de lazer e renovação em áreas costeiras e trilhas ao ar livre.</p>
                 </div>
-
                 <div class="hobby-card">
-                    <span class="hobby-icon">🍽️</span>
-                    <h3 data-i18n="hobby_4_title">Gastronomia & Cafés</h3>
-                    <p data-i18n="hobby_4_desc">Conhecer novos restaurantes, apreciar bons pratos e descobrir cafeterias especiais.</p>
+                    <div class="hobby-icon">💻</div>
+                    <h3 data-i18n="hobby4_title">Projetos Indie & Dev</h3>
+                    <p data-i18n="hobby4_desc">Desenvolvimento de jogos de cartas em navegador e extensões customizadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMAÇÃO & CERTIFICAÇÕES (COM ANIMAÇÃO DE FOLHA DE PAPEL) -->
+        <section id="education" class="section">
+            <div class="section-header">
+                <h2 data-i18n="edu_title">Formação & Certificações</h2>
+                <p data-i18n="edu_subtitle">Clique em qualquer credencial para abrir o diploma em formato de pergaminho/papel.</p>
+            </div>
+            <div class="education-grid">
+                <div class="edu-card paper-trigger" data-edu="post">
+                    <span class="edu-type" data-i18n="edu1_type">Pós-Graduação (Em andamento)</span>
+                    <h3>Qualidade e Teste de Software</h3>
+                    <p>UniCesumar</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+                <div class="edu-card paper-trigger" data-edu="degree">
+                    <span class="edu-type" data-i18n="edu2_type">Graduação</span>
+                    <h3>Análise e Desenvolvimento de Sistemas</h3>
+                    <p>Estácio</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+                <div class="edu-card paper-trigger" data-edu="cert">
+                    <span class="edu-type" data-i18n="edu3_type">Especialização</span>
+                    <h3>Cyber Security & DevOps</h3>
+                    <p>Segurança da Informação Contínua</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
                 </div>
             </div>
         </section>
@@ -313,24 +272,44 @@
 
     </main>
 
-    <!-- MODAL DE EXPERIÊNCIA PROFISSIONAL -->
-    <div id="expModalOverlay" class="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
-        <div class="modal-card">
-            <button type="button" id="closeModalBtn" class="modal-close" aria-label="Fechar">&times;</button>
-            <span id="modalCompanyBadge" class="modal-badge">Empresa</span>
-            <h2 id="modalRoleTitle" class="modal-title">Cargo</h2>
-            <span id="modalDate" class="modal-date">Período</span>
-            <hr class="modal-divider">
-            <ul id="modalList" class="modal-list"></ul>
-        </div>
-    </div>
-
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-container">
-            <p data-i18n="footer_rights">&copy; 2026 Rian Barbosa Dos Santos. Todos os direitos reservados.</p>
+            <p data-i18n="footer_text">&copy; 2026 Rian Barbosa Dos Santos. Todos os direitos reservados.</p>
         </div>
     </footer>
+
+    <!-- POPUP DE EXPERIÊNCIA PROFISSIONAL -->
+    <div id="expModal" class="custom-modal-overlay">
+        <div class="custom-modal">
+            <button type="button" class="close-modal">&times;</button>
+            <span id="modalCompanyTag" class="modal-tag">DELOITTE // QA PLENO</span>
+            <h2 id="modalCompanyTitle">Relatório de Operação</h2>
+            <div id="modalCompanyContent" class="modal-body-text">
+                <!-- Conteúdo injetado via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- POPUP DE FOLHA DE PAPEL (DIPLOMA/CERTIFICADO) -->
+    <div id="paperModal" class="paper-modal-overlay">
+        <div class="paper-document">
+            <button type="button" class="close-paper">&times;</button>
+            <div class="paper-header">
+                <span class="paper-seal">★ CERTIFICADO OFICIAL</span>
+                <span id="paperDate">REGISTRADO EM 2026</span>
+            </div>
+            <h2 id="paperTitle">Qualidade e Teste de Software</h2>
+            <div class="paper-body">
+                <p id="paperInstitution">Instituição: UniCesumar</p>
+                <p id="paperDesc" class="paper-description">Documento verificado e autenticado para fins de comprovação de competência técnica em engenharia de software e garantia de qualidade.</p>
+            </div>
+            <div class="paper-footer">
+                <span>Rian Barbosa Dos Santos</span>
+                <span class="signature-line">Assinatura Digital</span>
+            </div>
+        </div>
+    </div>
 
     <!-- TOAST NOTIFICATION -->
     <div id="toast" class="toast" role="status" aria-live="polite">
