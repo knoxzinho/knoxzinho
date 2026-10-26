@@ -101,7 +101,7 @@ body {
     20% { transform: translate(-2px, 2px); text-shadow: 2px -2px 0 var(--accent), -2px 2px 0 #ff0055; }
     40% { transform: translate(-2px, -2px); text-shadow: -2px -2px 0 var(--accent), 2px 2px 0 #00ffcc; }
     60% { transform: translate(2px, 2px); text-shadow: 2px 2px 0 var(--accent), -2px -2px 0 #ff0055; }
-    80% { transform: translate(2px, -2px); text-shadow: -2px 2px 0 var(--accent), 2px -2px 0 #00ffcc; }
+    80% { transform: translate(2px, -2px); text-shadow: -2px -2px 0 var(--accent), 2px -2px 0 #00ffcc; }
     100% { transform: translate(0); }
 }
 
@@ -236,7 +236,7 @@ body {
 }
 
 .section-header {
-    margin-bottom: 32px;
+    margin-bottom: 28px;
 }
 
 .section-header h2 {
@@ -330,7 +330,6 @@ body {
     overflow: hidden;
 }
 
-/* Animação Hover nas Tech Tags */
 .tag-cloud span.tech-tag:hover {
     background: var(--bg-card-hover);
     border-color: var(--accent);
@@ -339,7 +338,6 @@ body {
     box-shadow: 0 6px 16px var(--accent-glow);
 }
 
-/* Animação Click nas Tech Tags */
 .tag-cloud span.tech-tag:active,
 .tag-cloud span.tech-tag.clicked {
     transform: translateY(0) scale(0.92);
@@ -456,10 +454,41 @@ body {
     margin: 0;
 }
 
-/* ================= FORMAÇÃO & CERTIFICAÇÕES ================= */
+/* ================= FORMAÇÃO & CERTIFICAÇÕES (COM FILTROS) ================= */
+.edu-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.edu-filter-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.edu-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+}
+
+.edu-filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--bg-primary);
+    font-weight: 700;
+}
+
 .education-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 20px;
 }
 
@@ -469,36 +498,61 @@ body {
     border-radius: 12px;
     padding: 24px;
     cursor: pointer;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.2s, border-color 0.2s, opacity 0.2s;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.edu-card.hidden {
+    display: none;
 }
 
 .edu-card:hover {
     transform: translateY(-3px);
     border-color: var(--accent);
+    background: var(--bg-card);
+}
+
+.edu-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
 }
 
 .edu-type {
-    display: block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--accent);
     font-family: var(--font-mono);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: 8px;
+}
+
+.issuer-badge {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 2px 8px;
+    border-radius: 4px;
 }
 
 .edu-card h3 {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     color: #fff;
     margin: 0 0 6px 0;
+    line-height: 1.35;
 }
 
 .edu-card p {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-secondary);
-    margin: 0 0 12px 0;
+    margin: 0 0 14px 0;
 }
 
 .paper-hint {
@@ -507,12 +561,17 @@ body {
     color: var(--accent);
 }
 
-/* ================= POPUP DE EXPERIÊNCIA & TECH ================= */
+.linkedin-certs-cta {
+    margin-top: 28px;
+    text-align: center;
+}
+
+/* ================= POPUP DE EXPERIÊNCIA & TECH (DARK MODE ACINZENTADO) ================= */
 .custom-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(6px);
+    background: rgba(5, 5, 7, 0.85);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -529,8 +588,8 @@ body {
 }
 
 .custom-modal {
-    background: var(--bg-secondary);
-    border: 1px solid var(--border);
+    background: #141417;
+    border: 1px solid #27272a;
     border-radius: 16px;
     width: 100%;
     max-width: 580px;
@@ -538,7 +597,7 @@ body {
     position: relative;
     transform: scale(0.9);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    box-shadow: 0 25px 50px rgba(0,0,0,0.8);
 }
 
 .custom-modal-overlay.active .custom-modal {
@@ -578,7 +637,7 @@ body {
 }
 
 .modal-body-text {
-    color: var(--text-secondary);
+    color: #d4d4d8;
     font-size: 0.98rem;
     line-height: 1.7;
 }
@@ -592,11 +651,11 @@ body {
     margin-bottom: 8px;
 }
 
-/* ================= POPUP DE FOLHA DE PAPEL (DIPLOMA) ================= */
+/* ================= POPUP DE DIPLOMA / CERTIFICADO (DARK MODE ACINZENTADO) ================= */
 .paper-modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.85);
+    background: rgba(5, 5, 7, 0.88);
     backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
@@ -615,14 +674,15 @@ body {
 }
 
 .paper-document {
-    background: #fdfbf7;
-    color: #1c1917;
+    background: #141417;
+    color: #f4f4f5;
     width: 100%;
     max-width: 560px;
     padding: 48px;
-    border-radius: 4px;
+    border-radius: 12px;
+    border: 1px solid #27272a;
     position: relative;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.7), inset 0 0 40px rgba(0,0,0,0.05);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.85);
     transform-origin: top center;
     transform: rotateX(90deg) scale(0.8);
     transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -640,12 +700,12 @@ body {
     background: none;
     border: none;
     font-size: 1.8rem;
-    color: #78716c;
+    color: var(--text-secondary);
     cursor: pointer;
 }
 
 .close-paper:hover {
-    color: #000;
+    color: #fff;
 }
 
 .paper-header {
@@ -653,7 +713,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
-    border-bottom: 2px solid #e7e5e4;
+    border-bottom: 1px solid #27272a;
     padding-bottom: 12px;
 }
 
@@ -661,36 +721,36 @@ body {
     font-family: var(--font-mono);
     font-size: 0.85rem;
     font-weight: 700;
-    color: #d97706;
+    color: #38bdf8;
 }
 
 #paperDate {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: #78716c;
+    color: #71717a;
 }
 
 .paper-document h2 {
-    font-size: 1.8rem;
+    font-size: 1.65rem;
     font-weight: 700;
-    color: #0f172a;
+    color: #ffffff;
     margin: 0 0 16px 0;
 }
 
 .paper-body p {
     font-size: 1rem;
-    color: #334155;
+    color: #d4d4d8;
     margin: 0 0 12px 0;
 }
 
 .paper-description {
     font-size: 0.95rem;
     line-height: 1.7;
-    color: #475569;
-    background: #f1f5f9;
+    color: #a1a1aa;
+    background: #18181b;
     padding: 16px;
-    border-left: 4px solid #3b82f6;
-    border-radius: 4px;
+    border-left: 4px solid #38bdf8;
+    border-radius: 6px;
     margin-top: 16px !important;
 }
 
@@ -699,18 +759,23 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-top: 40px;
-    border-top: 1px dashed #cbd5e1;
+    border-top: 1px dashed #27272a;
     padding-top: 20px;
     font-weight: 600;
-    color: #0f172a;
+    color: #f4f4f5;
 }
 
 .signature-line {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.85rem;
-    color: #64748b;
-    border-top: 1px solid #475569;
+    color: #38bdf8;
+    text-decoration: none;
+    border-top: 1px solid #38bdf8;
     padding-top: 4px;
+}
+
+.signature-line:hover {
+    text-decoration: underline;
 }
 
 /* ================= CONTATO ================= */

@@ -25,7 +25,7 @@
             </nav>
             <div class="lang-selector">
                 <select id="langSelect" aria-label="Selecionar Idioma">
-                    <option value="pt" selected>PT-BR</option>
+                    <option value="pt" selected>Português</option>
                     <option value="en">English</option>
                     <option value="es">Español</option>
                 </select>
@@ -59,8 +59,8 @@
                     <span class="stat-label" data-i18n="stat_exp">Anos de Experiência</span>
                 </div>
                 <div class="stat-card">
-                    <span class="stat-number">2015</span>
-                    <span class="stat-label" data-i18n="stat_start">Início na Carreira Tech</span>
+                    <span class="stat-number">35+</span>
+                    <span class="stat-label" data-i18n="stat_certs">Certificações & Cursos</span>
                 </div>
                 <div class="stat-card">
                     <span class="stat-number">100%</span>
@@ -119,7 +119,7 @@
             </div>
         </section>
 
-        <!-- EXPERIÊNCIA / TIMELINE (COM POPUP POR EMPRESA) -->
+        <!-- EXPERIÊNCIA / TIMELINE -->
         <section id="experience" class="section">
             <div class="section-header">
                 <h2 data-i18n="exp_title">Experiência Profissional</h2>
@@ -222,31 +222,152 @@
             </div>
         </section>
 
-        <!-- FORMAÇÃO & CERTIFICAÇÕES (COM ANIMAÇÃO DE FOLHA DE PAPEL) -->
+        <!-- FORMAÇÃO & CERTIFICAÇÕES -->
         <section id="education" class="section">
             <div class="section-header">
                 <h2 data-i18n="edu_title">Formação & Certificações</h2>
-                <p data-i18n="edu_subtitle">Clique em qualquer credencial para abrir o diploma em formato de pergaminho/papel.</p>
+                <p data-i18n="edu_subtitle">Clique em qualquer formação ou certificado abaixo para abrir o documento oficial.</p>
             </div>
+
+            <!-- FILTROS DE CATEGORIA -->
+            <div class="edu-filters">
+                <button type="button" class="edu-filter-btn active" data-filter="all" data-i18n="filter_all">Todas (12)</button>
+                <button type="button" class="edu-filter-btn" data-filter="academic" data-i18n="filter_academic">Acadêmico</button>
+                <button type="button" class="edu-filter-btn" data-filter="qa" data-i18n="filter_qa">QA & Automação</button>
+                <button type="button" class="edu-filter-btn" data-filter="sec" data-i18n="filter_sec">Segurança & Cloud</button>
+                <button type="button" class="edu-filter-btn" data-filter="eng" data-i18n="filter_eng">Engenharia & Dev</button>
+            </div>
+
             <div class="education-grid">
-                <div class="edu-card paper-trigger" data-edu="post">
-                    <span class="edu-type" data-i18n="edu1_type">Pós-Graduação (Em andamento)</span>
-                    <h3>Qualidade e Teste de Software</h3>
-                    <p>UniCesumar</p>
+                <!-- ACADÊMICO -->
+                <div class="edu-card paper-trigger" data-edu="post" data-category="academic">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="edu_post_type">Pós-Graduação (Em andamento)</span>
+                        <span class="issuer-badge">UniCesumar</span>
+                    </div>
+                    <h3 data-i18n="edu_post_title">Qualidade e Teste de Software</h3>
+                    <p data-i18n="edu_post_desc">Especialização Lato Sensu em Engenharia da Qualidade</p>
                     <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
                 </div>
-                <div class="edu-card paper-trigger" data-edu="degree">
-                    <span class="edu-type" data-i18n="edu2_type">Graduação</span>
-                    <h3>Análise e Desenvolvimento de Sistemas</h3>
-                    <p>Estácio</p>
+
+                <div class="edu-card paper-trigger" data-edu="degree" data-category="academic">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="edu_deg_type">Graduação Superior</span>
+                        <span class="issuer-badge">Estácio</span>
+                    </div>
+                    <h3 data-i18n="edu_deg_title">Análise e Desenvolvimento de Sistemas</h3>
+                    <p data-i18n="edu_deg_desc">Concluído em 2024 • Diploma Superior de Tecnologia</p>
                     <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
                 </div>
-                <div class="edu-card paper-trigger" data-edu="cert">
-                    <span class="edu-type" data-i18n="edu3_type">Especialização</span>
-                    <h3>Cyber Security & DevOps</h3>
-                    <p>Segurança da Informação Contínua</p>
+
+                <!-- QA & AUTOMAÇÃO -->
+                <div class="edu-card paper-trigger" data-edu="cypress_udemy" data-category="qa">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="cyp_type">Automação E2E</span>
+                        <span class="issuer-badge">Udemy</span>
+                    </div>
+                    <h3 data-i18n="cyp_title">Testes Automatizados com Cypress (Básico ao Intermediário)</h3>
+                    <p data-i18n="cyp_desc">Arquitetura de testes, Page Objects e integração contínua</p>
                     <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
                 </div>
+
+                <div class="edu-card paper-trigger" data-edu="qa_alura" data-category="qa">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="alqa_type">Gestão da Qualidade</span>
+                        <span class="issuer-badge">Alura</span>
+                    </div>
+                    <h3 data-i18n="alqa_title">Quality Assurance: Plano de Testes e Gestão de Bugs</h3>
+                    <p data-i18n="alqa_desc">Estratégias de validação, rastreabilidade e ciclo de vida de defeitos</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <div class="edu-card paper-trigger" data-edu="iterasys_qa" data-category="qa">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="it_type">Preparatório & Prática</span>
+                        <span class="issuer-badge">Iterasys</span>
+                    </div>
+                    <h3 data-i18n="it_title">Certificações em Teste de Software e QA</h3>
+                    <p data-i18n="it_desc">Fundamentos de testes baseados no syllabus BSTQB / ISTQB</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <div class="edu-card paper-trigger" data-edu="jasmine_alura" data-category="qa">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="jas_type">Testes Unitários</span>
+                        <span class="issuer-badge">Alura</span>
+                    </div>
+                    <h3 data-i18n="jas_title">Angular e Jasmine: Testes de Unidade</h3>
+                    <p data-i18n="jas_desc">Validação de componentes front-end e cobertura de código</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <!-- SEGURANÇA, OBSERVABILIDADE & CLOUD -->
+                <div class="edu-card paper-trigger" data-edu="capc_certiprof" data-category="sec">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="cap_type">Certificação Internacional</span>
+                        <span class="issuer-badge">CertiProf</span>
+                    </div>
+                    <h3 data-i18n="cap_title">Cybersecurity Awareness Professional (CAPC™)</h3>
+                    <p data-i18n="cap_desc">Emitido em Ago 2024 • Credencial Oficial CertiProf</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <div class="edu-card paper-trigger" data-edu="cyber_udemy" data-category="sec">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="cyb_type">Segurança Ofensiva & Defensiva</span>
+                        <span class="issuer-badge">Udemy</span>
+                    </div>
+                    <h3 data-i18n="cyb_title">Curso Completo em Cyber Security</h3>
+                    <p data-i18n="cyb_desc">Segurança da Informação, Blindagem e DevOps Contínuo</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <div class="edu-card paper-trigger" data-edu="dynatrace" data-category="sec">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="dyn_type">Observabilidade & APM</span>
+                        <span class="issuer-badge">Dynatrace</span>
+                    </div>
+                    <h3 data-i18n="dyn_title">Dynatrace Masterclass (2026)</h3>
+                    <p data-i18n="dyn_desc">Monitoramento de performance, logs e análise de causa raiz</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <div class="edu-card paper-trigger" data-edu="azure_dio" data-category="sec">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="azu_type">Cloud Computing</span>
+                        <span class="issuer-badge">DIO</span>
+                    </div>
+                    <h3 data-i18n="azu_title">Microsoft Azure Cloud Native</h3>
+                    <p data-i18n="azu_desc">Emitido em 2025 • Arquitetura em nuvem e ecossistema Azure</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <!-- ENGENHARIA DE SOFTWARE & REDES -->
+                <div class="edu-card paper-trigger" data-edu="swe_alura" data-category="eng">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="swe_type">Trilha Completa</span>
+                        <span class="issuer-badge">Alura</span>
+                    </div>
+                    <h3 data-i18n="swe_title">Formação Engenharia de Software</h3>
+                    <p data-i18n="swe_desc">Arquitetura, ciclo de vida de sistemas, agilidade e boas práticas</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+
+                <div class="edu-card paper-trigger" data-edu="redes_alura" data-category="eng">
+                    <div class="edu-card-top">
+                        <span class="edu-type" data-i18n="net_type">Infraestrutura & Protocolos</span>
+                        <span class="issuer-badge">Alura + CertiProf</span>
+                    </div>
+                    <h3 data-i18n="net_title">Redes de Computadores & Lifelong Learning Badge</h3>
+                    <p data-i18n="net_desc">Protocolos HTTP/TCP-IP, infraestrutura e aprendizado contínuo</p>
+                    <span class="paper-hint" data-i18n="paper_hint">📄 Abrir Documento</span>
+                </div>
+            </div>
+
+            <div class="linkedin-certs-cta">
+                <a href="https://www.linkedin.com/in/rianbsantos/details/certifications/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" data-i18n="btn_all_certs">
+                    Ver todas as +35 licenças e certificados no LinkedIn ↗
+                </a>
             </div>
         </section>
 
@@ -279,7 +400,7 @@
         </div>
     </footer>
 
-    <!-- POPUP DE EXPERIÊNCIA PROFISSIONAL & TECH STACK -->
+    <!-- POPUP DE EXPERIÊNCIA PROFISSIONAL & TECH STACK (DARK MODE) -->
     <div id="expModal" class="custom-modal-overlay">
         <div class="custom-modal">
             <button type="button" class="close-modal">&times;</button>
@@ -291,12 +412,12 @@
         </div>
     </div>
 
-    <!-- POPUP DE FOLHA DE PAPEL (DIPLOMA/CERTIFICADO) -->
+    <!-- POPUP DE DIPLOMA / CERTIFICADO (DARK MODE) -->
     <div id="paperModal" class="paper-modal-overlay">
         <div class="paper-document">
             <button type="button" class="close-paper">&times;</button>
             <div class="paper-header">
-                <span class="paper-seal">★ CERTIFICADO OFICIAL</span>
+                <span class="paper-seal" data-i18n="paper_seal">★ CREDENCIAL VERIFICADA</span>
                 <span id="paperDate">REGISTRADO EM 2026</span>
             </div>
             <h2 id="paperTitle">Qualidade e Teste de Software</h2>
@@ -306,7 +427,7 @@
             </div>
             <div class="paper-footer">
                 <span>Rian Barbosa Dos Santos</span>
-                <span class="signature-line">Assinatura Digital</span>
+                <a href="https://www.linkedin.com/in/rianbsantos/details/certifications/" target="_blank" rel="noopener noreferrer" class="signature-line" data-i18n="paper_verify">Verificar no LinkedIn ↗</a>
             </div>
         </div>
     </div>
