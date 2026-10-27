@@ -7,6 +7,54 @@ document.addEventListener('DOMContentLoaded', () => {
     const eduCards = document.querySelectorAll('.edu-card');
     let toastTimeout = null;
 
+    // Estatísticas (Observer para animação de contagem 0 até alvo ao rolar para cima/baixo ou carregar)
+    const statCards = document.querySelectorAll('.stat-card');
+    let animatedStats = new Set();
+
+    const animateValue = (el, start, end, duration, suffix) => {
+        let startTimestamp = null;
+        const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            const currentVal = Math.floor(progress * (end - start) + start);
+            el.textContent = currentVal + suffix;
+            if (progress < 1) {
+                window.requestAnimationFrame(step);
+            } else {
+                el.textContent = end + suffix;
+            }
+        };
+        window.requestAnimationFrame(step);
+    };
+
+    const checkStatsInView = () => {
+        statCards.forEach((card, index) => {
+            const rect = card.getBoundingClientRect();
+            // Dispara quando o card entra na viewport de qualquer direção (cima ou baixo)
+            const isInView = rect.top <= window.innerHeight - 50 && rect.bottom >= 50;
+            const numberSpan = card.querySelector('.stat-number');
+            const target = parseInt(card.getAttribute('data-target'), 10);
+            const suffix = card.getAttribute('data-suffix');
+
+            if (isInView) {
+                if (!animatedStats.has(index)) {
+                    animateValue(numberSpan, 0, target, 1200, suffix);
+                    animatedStats.add(index);
+                }
+            } else {
+                // Se o card sair completamente da tela, reseta o estado para permitir nova animação ao rolar novamente
+                if (rect.top > window.innerHeight || rect.bottom < 0) {
+                    animatedStats.delete(index);
+                    numberSpan.textContent = '0' + suffix;
+                }
+            }
+        });
+    };
+
+    window.addEventListener('scroll', checkStatsInView, { passive: true });
+    window.addEventListener('resize', checkStatsInView, { passive: true });
+    setTimeout(checkStatsInView, 100);
+
     // Modais de Experiência e Stack
     const expModal = document.getElementById('expModal');
     const closeExpModal = expModal.querySelector('.close-modal');
@@ -28,14 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let activeCompanyKey = null;
     let activeEduKey = null;
 
-    // Dicionário de Traduções (PT, EN, ES)
+    // Dicionário de Traduções (PT, EN, ES) — Sem Hobbies
     const translations = {
         pt: {
             logo: "Rian Santos",
             nav_about: "Sobre",
             nav_skills: "Skills",
             nav_experience: "Experiência",
-            nav_hobbies: "Hobbies",
             nav_education: "Formação",
             nav_contact: "Contato",
             hero_badge: "Garantindo qualidade e caçando bugs",
@@ -59,16 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
             exp_wati_short: "Execução em sistemas de Urgência Hospitalar (PEP/SoulMV), regressão cross-browser e SQL Developer.",
             exp_accenture_short: "5 anos dedicados à qualidade em produtos web/mobile, scripts Oracle PL/SQL e telecomunicações.",
             inspect_hint: "Ver Detalhes da Operação →",
-            hobbies_title: "Hobbies & Interesses",
-            hobbies_subtitle: "O que me mantém energizado fora das telas de teste e automação.",
-            hobby1_title: "Violão & Música ao Vivo",
-            hobby1_desc: "Criação de arranjos musicais e experimentos com setups inspirados em Loop Sessions.",
-            hobby2_title: "Jogos de Aventura & RPG",
-            hobby2_desc: "Exploração de mundos imersivos como Cyberpunk 2077, Far Cry e PUBG.",
-            hobby3_title: "Praia & Natureza",
-            hobby3_desc: "Momentos de lazer e renovação em áreas costeiras e trilhas ao ar livre.",
-            hobby4_title: "Projetos Indie & Dev",
-            hobby4_desc: "Desenvolvimento de jogos de cartas em navegador e extensões customizadas.",
             edu_title: "Formação & Certificações",
             edu_subtitle: "Clique em qualquer formação ou certificado abaixo para abrir o documento oficial.",
             filter_all: "Todas (12)",
@@ -127,7 +164,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_about: "About",
             nav_skills: "Skills",
             nav_experience: "Experience",
-            nav_hobbies: "Hobbies",
             nav_education: "Education",
             nav_contact: "Contact",
             hero_badge: "Ensuring quality and hunting bugs",
@@ -151,16 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             exp_wati_short: "Execution in Hospital Emergency systems (PEP/SoulMV), cross-browser regression, and SQL Developer.",
             exp_accenture_short: "5 years dedicated to quality in web/mobile products, Oracle PL/SQL scripts, and telecommunications.",
             inspect_hint: "View Operation Details →",
-            hobbies_title: "Hobbies & Interests",
-            hobbies_subtitle: "What keeps me energized outside testing and automation screens.",
-            hobby1_title: "Acoustic Guitar & Live Music",
-            hobby1_desc: "Creating musical arrangements and experimenting with setups inspired by Loop Sessions.",
-            hobby2_title: "Adventure Games & RPG",
-            hobby2_desc: "Exploring immersive worlds like Cyberpunk 2077, Far Cry, and PUBG.",
-            hobby3_title: "Beach & Nature",
-            hobby3_desc: "Leisure moments and renewal in coastal areas and outdoor trails.",
-            hobby4_title: "Indie & Dev Projects",
-            hobby4_desc: "Developing browser card games and custom browser extensions.",
             edu_title: "Education & Certifications",
             edu_subtitle: "Click on any degree or certificate below to open the official document.",
             filter_all: "All (12)",
@@ -219,7 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
             nav_about: "Sobre mí",
             nav_skills: "Skills",
             nav_experience: "Experiencia",
-            nav_hobbies: "Pasatiempos",
             nav_education: "Educación",
             nav_contact: "Contacto",
             hero_badge: "Garantizando calidad y cazando bugs",
@@ -242,17 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             exp_indra_short: "Aumento del 40% en volumen de pruebas automatizadas con Cypress y Robot Framework, aplicación de métricas TMMi.",
             exp_wati_short: "Ejecución en sistemas de Urgencia Hospitalaria (PEP/SoulMV), regresión cross-browser y SQL Developer.",
             exp_accenture_short: "5 años dedicados a la calidad en productos web/móvil, scripts Oracle PL/SQL y telecomunicaciones.",
-            inspect_hint: "Ver Detalles de la Operación →",
-            hobbies_title: "Pasatiempos & Intereses",
-            hobbies_subtitle: "Lo que me mantiene energizado fuera de las pantallas de pruebas y automatización.",
-            hobby1_title: "Guitarra & Música en Vivo",
-            hobby1_desc: "Creación de arreglos musicales y experimentos con configuraciones inspiradas en Loop Sessions.",
-            hobby2_title: "Juegos de Aventura & RPG",
-            hobby2_desc: "Exploración de mundos inmersivos como Cyberpunk 2077, Far Cry y PUBG.",
-            hobby3_title: "Playa & Naturaleza",
-            hobby3_desc: "Momentos de ocio y renovación en áreas costeras y senderos al aire libre.",
-            hobby4_title: "Proyectos Indie & Dev",
-            hobby4_desc: "Desarrollo de juegos de cartas en navegador y extensiones personalizadas.",
+            inspect_hint: "Ver Detalles de la Operação →",
             edu_title: "Educación & Certificaciones",
             edu_subtitle: "Haz clic en cualquier formación o certificado para abrir el documento oficial.",
             filter_all: "Todas (12)",
@@ -272,7 +287,7 @@ document.addEventListener('DOMContentLoaded', () => {
             alqa_type: "Gestión de Calidad",
             alqa_title: "Quality Assurance: Plan de Pruebas y Gestión de Bugs",
             alqa_desc: "Estrategias de validación, trazabilidad y ciclo de vida de defectos",
-            it_type: "Preparatorio & Práctica",
+            it_type: "Preparatório & Prática",
             it_title: "Certificaciones en Pruebas de Software y QA",
             it_desc: "Fundamentos de pruebas basados en el syllabus BSTQB / ISTQB",
             jas_type: "Pruebas Unitarias",
@@ -293,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
             swe_type: "Ruta Completa",
             swe_title: "Formación Ingeniería de Software",
             swe_desc: "Arquitectura, ciclo de vida de sistemas, agilidad y buenas prácticas",
-            net_type: "Infraestructura & Protocolos",
+            net_type: "Infraestrutura & Protocolos",
             net_title: "Redes de Computadoras & Lifelong Learning Badge",
             net_desc: "Protocolos HTTP/TCP-IP, infraestructura y aprendizaje continuo",
             paper_hint: "📄 Abrir Documento",
@@ -383,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
             accenture: { tag: "ACCENTURE BRASIL // QA", title: "Accenture Brasil (Jun 2015 - Jul 2020)", content: `<p>Consolidation of 5 years of experience in massive telecommunications operations and large-scale systems:</p><ul><li><strong>Telecom (Oi):</strong> End-to-end homologation in massive flows of pay TV, fixed/mobile internet, and phone plans.</li><li><strong>Database:</strong> Creation of structured PL/SQL scripts in Oracle databases for data consistency.</li><li><strong>Tooling:</strong> Quality management using ALM and Azure DevOps.</li></ul>` }
         },
         es: {
-            deloitte: { tag: "DELOITTE // QA PLENO", title: "Deloitte (Nov 2024 - Presente)", content: `<p>Participación en proyectos de alta criticidad y validación de soluciones basadas en Inteligencia Artificial y seguridad de datos:</p><ul><li><strong>ChatPetrobras:</strong> Validación minuciosa de solución de IA conversacional basada en LLM integrada a datos operativos y flujos internos.</li><li><strong>Adecuación Federal:</strong> Homologación de herramienta inteligente para análisis y refactorización de código enfocada en las normas del CNPJ Alfanumérico.</li><li><strong>Porto Seguro:</strong> Ajuste estructural y garantía de seguridad y encriptación de datos en el flujo de emisión de boletos corporativos.</li></ul>` },
+            deloitte: { tag: "DELOITTE // QA PLENO", title: "Deloitte (Nov 2024 - Presente)", content: `<p>Participación en proyectos de alta criticidad y validación de soluciones basadas en Inteligencia Artificial y seguridad de datos:</p><ul><li><strong>ChatPetrobras:</strong> Validación minuciosa de solución de IA conversacional basada en LLM integrada a datos operativos y flujos internos.</li><li><strong>Adequación Federal:</strong> Homologación de herramienta inteligente para análisis y refatorización de código enfocada en las normas del CNPJ Alfanumérico.</li><li><strong>Porto Seguro:</strong> Ajuste estructural y garantía de seguridad y encriptación de datos en el flujo de emisión de boletos corporativos.</li></ul>` },
             ecs: { tag: "ECS INOVAÇÃO // QA PLENO", title: "ECS Inovação (Sep 2022 - Jun 2024)", content: `<p>Garantía de calidad y automatización de procesos críticos en el ecosistema de salud y farma:</p><ul><li><strong>Automatización Cypress:</strong> Ganancia del 20% en nuevos escenarios validados mediante scripts reutilizables y robustos.</li><li><strong>APIs & Base de Datos:</strong> Consumo integral de APIs (Postman/Swagger) combinados con consultas de consistencia vía Microsoft SQL Server.</li><li><strong>Ecosistema Farma:</strong> Homologación de reglas críticas en flujos de inventario, ventas online de medicamentos y reportes de laboratorio.</li></ul>` },
             indra: { tag: "INDRA // QA PLENO", title: "Indra (Sep 2021 - Sep 2022)", content: `<p>Enfoque en la eficiencia de pruebas e implementación de frameworks escalables:</p><ul><li><strong>Automatización Avanzada:</strong> Incremento masivo del 40% en volumen de pruebas validadas con Cypress y Robot Framework.</li><li><strong>Métricas TMMi:</strong> Construcción de reportes estructurados basados en el modelo TMMi para soporte de mejora continua.</li><li><strong>Gestión Ágil:</strong> Trazabilidad de extremo a extremo de defectos en ecosistemas Jira, Azure DevOps y TestLink.</li></ul>` },
             wati: { tag: "WATI CONSULTORIA // QA", title: "WATI Consultoria (Jul 2020 - Sep 2021)", content: `<p>Homologación en sistemas de salud de alta criticidade:</p><ul><li><strong>Urgencia Hospitalaria:</strong> Elaboración y ejecución de escenarios en TestLink enfocados en sistemas PEP y SoulMV.</li><li><strong>Regresión Web:</strong> Creación de scripts dinámicos de regresión cross-browser utilizando Selenium y Robot Framework.</li><li><strong>Backend:</strong> Manipulación, extracción de datos y validación de reglas de backend utilizando SQL Developer.</li></ul>` },
@@ -429,10 +444,10 @@ document.addEventListener('DOMContentLoaded', () => {
             iterasys_qa: { date: "EMITIDO 2021 • CREDENCIAL ITERASYS", title: "Certificaciones en Pruebas de Software y QA", institution: "Iterasys", desc: "Entrenamiento intensivo fundamentado en las directrices internacionales de ISTQB / BSTQB (CTFL), técnicas de caja negra, caja blanca, partición de equivalencia y análisis de valores límite." },
             jasmine_alura: { date: "CERTIFICADO OFICIAL • ALURA", title: "Angular y Jasmine: Pruebas Unitarias", institution: "Alura Tecnología", desc: "Capacitación técnica en la construcción de pruebas unitarias automatizadas en front-end utilizando los frameworks Jasmine y Karma, garantizando alta cobertura y prevención de regresiones." },
             capc_certiprof: { date: "EMITIDO AGOSTO 2024 • BADGE OFICIAL", title: "Cybersecurity Awareness Professional Certificate (CAPC™)", institution: "CertiProf International", desc: "Certificación internacional que acredita dominio sobre políticas de ciberseguridad, protección de datos corporativos, mitigación de amenazas, ingeniería social y cumplimiento de seguridad." },
-            cyber_udemy: { date: "EMITIDO 2022 • CREDENCIAL UDEMY", title: "Curso Completo en Cyber Security", institution: "Udemy Academy", desc: "Formación integral en Seguridad de la Información, análisis de vulnerabilidades web (OWASP Top 10), prácticas de DevSecOps y blindaje de entornos de prueba y producción." },
+            cyber_udemy: { date: "EMITIDO 2022 • CREDENCIAL UDEMY", title: "Curso Completo em Cyber Security", institution: "Udemy Academy", desc: "Formación integral en Seguridad de la Información, análisis de vulnerabilidades web (OWASP Top 10), prácticas de DevSecOps y blindaje de entornos de prueba y producción." },
             dynatrace: { date: "EMITIDO 2026 • MASTERCLASS", title: "Dynatrace Masterclass — Observability & APM", institution: "Dynatrace", desc: "Especialización en monitoreo avanzado de aplicaciones en tiempo real, rastreo distribuido, análisis de cuellos de botella de rendimiento y diagnóstico automatizado de incidentes en la nube." },
             azure_dio: { date: "EMITIDO 2025 • CREDENCIAL DIO", title: "Introducción a la Experiencia Microsoft Azure Cloud Native", institution: "DIO (Digital Innovation One)", desc: "Certificación centrada en la infraestructura en la nube de Microsoft Azure, servicios Cloud Native, pipelines de integración continua (Azure DevOps) y escalabilidad de entornos corporativos." },
-            swe_alura: { date: "RUTA COMPLETA • ALURA", title: "Formación Ingeniería de Software", institution: "Alura Tecnología", desc: "Ruta completa de Ingeniería de Software que aborda arquitectura limpia, patrones de diseño, modelado de sistemas, calidad continua, agilidad (Scrum/Kanban) y cultura DevOps." },
+            swe_alura: { date: "RUTA COMPLETA • ALURA", title: "Formación Ingeniería de Software", institution: "Alura Tecnología", desc: "Ruta completa de Ingeniería de Software que abarca arquitectura limpia, patrones de diseño, modelado de sistemas, calidad continua, agilidad (Scrum/Kanban) y cultura DevOps." },
             redes_alura: { date: "CREDENCIAL VERIFICADA • ALURA & CERTIPROF", title: "Redes de Computadoras & Lifelong Learning Badge", institution: "Alura / CertiProf", desc: "Dominio de la arquitectura de redes TCP/IP, modelo OSI, protocolos HTTP/HTTPS, DNS, diagnóstico de comunicación entre microservicios y compromiso con el aprendizaje continuo." }
         }
     };
@@ -471,7 +486,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Atualiza modal aberto se houver algum
         if (expModal.classList.contains('active') && activeCompanyKey) {
             const data = companyDataMulti[currentLang][activeCompanyKey];
             if (data) {

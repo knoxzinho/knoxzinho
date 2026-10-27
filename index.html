@@ -19,13 +19,12 @@
                 <a href="#about" data-i18n="nav_about" class="glitch-hover" data-text="Sobre">Sobre</a>
                 <a href="#skills" data-i18n="nav_skills" class="glitch-hover" data-text="Skills">Skills</a>
                 <a href="#experience" data-i18n="nav_experience" class="glitch-hover" data-text="Experiência">Experiência</a>
-                <a href="#hobbies" data-i18n="nav_hobbies" class="glitch-hover" data-text="Hobbies">Hobbies</a>
                 <a href="#education" data-i18n="nav_education" class="glitch-hover" data-text="Formação">Formação</a>
                 <a href="#contact" class="nav-cta" data-i18n="nav_contact">Contato</a>
             </nav>
             <div class="lang-selector">
                 <select id="langSelect" aria-label="Selecionar Idioma">
-                    <option value="pt" selected>Português</option>
+                    <option value="pt" selected>PT-BR</option>
                     <option value="en">English</option>
                     <option value="es">Español</option>
                 </select>
@@ -54,16 +53,16 @@
         <!-- SOBRE / METRICS -->
         <section id="about" class="section">
             <div class="stats-grid">
-                <div class="stat-card">
-                    <span class="stat-number">10+</span>
+                <div class="stat-card" data-target="10" data-suffix="+">
+                    <span class="stat-number">0+</span>
                     <span class="stat-label" data-i18n="stat_exp">Anos de Experiência</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">35+</span>
+                <div class="stat-card" data-target="35" data-suffix="+">
+                    <span class="stat-number">0+</span>
                     <span class="stat-label" data-i18n="stat_certs">Certificações & Cursos</span>
                 </div>
-                <div class="stat-card">
-                    <span class="stat-number">100%</span>
+                <div class="stat-card" data-target="100" data-suffix="%">
+                    <span class="stat-number">0%</span>
                     <span class="stat-label" data-i18n="stat_focus">Foco em Qualidade & Regressão</span>
                 </div>
             </div>
@@ -188,37 +187,6 @@
                     <span class="inspect-hint" data-i18n="inspect_hint">Ver Detalhes da Operação →</span>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- HOBBIES -->
-        <section id="hobbies" class="section">
-            <div class="section-header">
-                <h2 data-i18n="hobbies_title">Hobbies & Interesses</h2>
-                <p data-i18n="hobbies_subtitle">O que me mantém energizado fora das telas de teste e automação.</p>
-            </div>
-
-            <div class="hobbies-grid">
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎸</div>
-                    <h3 data-i18n="hobby1_title">Violão & Música ao Vivo</h3>
-                    <p data-i18n="hobby1_desc">Criação de arranjos musicais e experimentos com setups inspirados em Loop Sessions.</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎮</div>
-                    <h3 data-i18n="hobby2_title">Jogos de Aventura & RPG</h3>
-                    <p data-i18n="hobby2_desc">Exploração de mundos imersivos como Cyberpunk 2077, Far Cry e PUBG.</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🌊</div>
-                    <h3 data-i18n="hobby3_title">Praia & Natureza</h3>
-                    <p data-i18n="hobby3_desc">Momentos de lazer e renovação em áreas costeiras e trilhas ao ar livre.</p>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">💻</div>
-                    <h3 data-i18n="hobby4_title">Projetos Indie & Dev</h3>
-                    <p data-i18n="hobby4_desc">Desenvolvimento de jogos de cartas em navegador e extensões customizadas.</p>
-                </div>
             </div>
         </section>
 
@@ -381,7 +349,7 @@
                     <button type="button" class="btn btn-primary" data-copy="rianbarbosa35@gmail.com" data-i18n="btn_copy_email">
                         Copiar E-mail ⎘
                     </button>
-                    <button type="button" class="btn btn-secondary" data-copy="+5581991425840" data-i18n="btn_copy_phone">
+                    <button type="button" class="btn btn-secondary" data-copy="99142-5840" data-i18n="btn_copy_phone">
                         Copiar Telefone ⎘
                     </button>
                     <a href="https://www.linkedin.com/in/rianbsantos" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
@@ -400,7 +368,7 @@
         </div>
     </footer>
 
-    <!-- POPUP DE EXPERIÊNCIA PROFISSIONAL & TECH STACK (DARK MODE) -->
+    <!-- POPUP DE EXPERIÊNCIA PROFISSIONAL & TECH STACK (DARK) -->
     <div id="expModal" class="custom-modal-overlay">
         <div class="custom-modal">
             <button type="button" class="close-modal">&times;</button>
@@ -412,7 +380,7 @@
         </div>
     </div>
 
-    <!-- POPUP DE DIPLOMA / CERTIFICADO (DARK MODE) -->
+    <!-- POPUP DE DIPLOMA / CERTIFICADO (DARK) -->
     <div id="paperModal" class="paper-modal-overlay">
         <div class="paper-document">
             <button type="button" class="close-paper">&times;</button>
